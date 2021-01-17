@@ -4,7 +4,7 @@ import './css/index.css'
 import './css/materialize.css'
 
 import Navbar from './components/Nav/Navbar.js'
-import HomeAnime from './components/HomeAnime.js'
+import Home from './components/Home.js'
 
 
 class App extends React.Component{
@@ -12,7 +12,7 @@ class App extends React.Component{
         return (
             <div id = 'App'>
                 <Navbar />
-                <HomeAnime />
+                <Home />
                 
             </div>
         )

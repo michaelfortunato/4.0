@@ -24,7 +24,7 @@ const StyledBanner = styled.div`
 
 `;
 
-const HomeAnime = (props) => {
+const Home = (props) => {
 
 
 
@@ -32,20 +32,16 @@ const HomeAnime = (props) => {
         <div>
             <Grid  {...defaultGridProps} />
             <div className = 'row hero'>
-                    <div className = 'col l3 s0 ' >
-                        <Triangle />
-                    </div>
+                    <div className = 'col l3 s0 ' />
                     <StyledBanner className = 'col l6 s12'>
                         <Name firstName = 'Michael' middleName = 'Newman' lastName = 'Fortunato'/>
                         <Description />
                     </StyledBanner>
-                    <div className = 'col l3 s0' >
-                        <Triangle />
-                    </div>
+                    <div className = 'col l3 s0' />
             </div>
 
         </div>
         );
 }
 
-export default HomeAnime;
+export default Home;

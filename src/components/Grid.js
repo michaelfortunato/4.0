@@ -13,8 +13,6 @@ const StyledGrid = styled.div`
     z-index: 1;
     overflow:hidden;
 
-    //transform: scaleY(2) rotate(45deg);
-
     &.fade-out-appear, &.fade-out-enter{
         opacity: 1;
     }
@@ -90,15 +88,13 @@ const Grid = (props) => {
         totalTimeout = Math.max(time_conf.duration + time_conf.delay, totalTimeout);
         colLines.push(<Gridline key = {i + props.numLines} {...conf} />)
     }
-    console.log(props.isGridDone);
 
-    //setTimeout(() => props.setIsGridDone(true), 4000)
-    /* change the state after animation is complete */
+
         return (
             <CSSTransition
-                appear = {false}
+                appear = {true}
                 in = {true}
-                timeout = {props.duration + props.delay}
+                timeout = {totalTimeout}
                 classNames = 'fade-out'
                 >
                 <StyledGrid duration = {props.duration} delay = {props.delay}> 
