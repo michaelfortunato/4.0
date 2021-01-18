@@ -11,6 +11,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-lottie": "^1.2.3",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-three-fiber": "^4.2.18",
     "react-transition-group": "^4.4.1",
