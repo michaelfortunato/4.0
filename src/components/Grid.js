@@ -4,8 +4,8 @@ import { CSSTransition } from 'react-transition-group'
 import Gridline from './Gridline.js';
 
 
-const MIN_DURATION = 400;
-const MIN_DELAY = 1800;
+const MIN_DURATION = 250;
+const MIN_DELAY = 700;
 
 const StyledGrid = styled.div`
 
@@ -36,12 +36,11 @@ const StyledGrid = styled.div`
 class Grid extends React.Component {
     static defaultProps = {
         random: true,
-        numLines: 12,
+        numLines: 22,
         offset: 0,
         avgDuration: 200,
-        avgDelay: 3500,
+        avgDelay: 4000,
         duration: 1500,
-        delay: 6500,
         isDot: true,
     }
     constructor(props) {

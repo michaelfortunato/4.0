@@ -2,57 +2,39 @@ import React from 'react';
 import  styled  from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 
+const w = window.innerWidth;
+const h = window.innerHeight;
+const circleSize = 10; //in pixels
+
+const circleXScaling = circleSize/w;
+const circleYScaling = circleSize/h;
+
 const StyledGridline = styled.div`
     position: absolute;
-    //background:#6699CC;
-    //background: #C38D9E;
-    z-index: 0;
     background: white;
+    height: ${(props) => props.isRow ? `${circleSize}px` : '100%'};
+    width: ${(props) => props.isRow ? '100%' : `${circleSize}px`};
+    top: ${(props) => props.isRow ? `${props.fixedPos}vh`:  'initial'};
+    left: ${(props) => props.isRow ? 'initial':  `${props.fixedPos}vh`};
     
-
-    &.line-appear {
-        left: ${(props) => props.isRow ? `${props.floatingPos}%` : `${props.fixedPos}vh`};
-        top: ${(props) => props.isRow ? `${props.fixedPos}vh` : `${props.floatingPos}%`};
-        height: ${(props) => props.isDot ? '7px': '0px'};
-        width: ${(props) => props.isDot ? '7px': '0px'};
-        
-        border-radius: ${(props) => props.isDot ? '50%': '0%'};
-    }
+    transform-origin: ${(props) => props.isRow ? `${props.floatingPos}vh` : '50%'}
+                        ${(props) => props.isRow ? '50%' : `${props.floatingPos}vh`};
+    transform: ${(props) => props.isRow ? `scaleX(${circleXScaling})` : `scaleY(${circleYScaling})`};    
     
-    &.line-appear-active {
-        height: ${(props) => props.isRow ? '2px': '100%'};
-        width:  ${(props) => props.isRow ? '100%': '2px'};
-        
-        left: ${(props) => props.isRow ? '0% !important': ''};
-        top: ${(props) => props.isRow ? '': '0% !important'};
-        
-        border-radius: 0;
-      
-
-        transition-property: all;
-        transition-duration: ${(props) => props.duration}ms; 
-        transition-delay: ${(props) => props.delay}ms;
-
-        transition-property: all;
-        transition-duration: ${(props) => props.duration}ms; 
-        transition-delay: ${(props) => props.delay}ms;
-        
-        -webkit-transition-property: all;
-        -webkit-transition-duration: ${(props) => props.duration}ms; 
-        -webkit-transition-delay: ${(props) => props.delay}ms;
-
-        -webkit-transition-property: all;
-        -webkit-transition-duration: ${(props) => props.duration}ms; 
-        -webkit-transition-delay: ${(props) => props.delay}ms;
-        will-change: all;
-        
+    &.line-appear, &.line-enter {
+        border-radius: 50%;
+        transform: ${(props) => props.isRow ? `scaleX(${circleXScaling})` : `scaleY(${circleYScaling})`};    
     }
-    &.line-appear-done{
-        height: ${(props) => props.isRow ? '2px': '100%'};
-        width:  ${(props) => props.isRow ? '100%': '2px'};
-        left: ${(props) => props.isRow ? '0% !important': `${props.fixedPos}vh`};
-        top: ${(props) => props.isRow ? `${props.fixedPos}vh`: '0% !important'};
-        border-radius: 0;
+    &.line-appear-active, &.line-enter-active {
+        
+        transform: ${(props) => props.isRow ? `scaleX(1) scaleY(.1)` : `scaleY(1) scaleX(.1)`};  
+        transition-duration: ${(props) => props.duration}ms; 
+        transition-delay: ${(props) => props.delay}ms; 
+        transition-property: all;
+        will-change: transform;
+    }
+    &.line-appear-done, &.line-enter-done {
+        transform: ${(props => props.isRow ? 'scaleX(1) scaleY(.1)': 'scaleY(1) scaleX(.1)')};
     }
 `;
 
