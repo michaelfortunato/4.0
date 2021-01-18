@@ -7,7 +7,7 @@ const StyledLetter = styled.span`
     position: relative;
     display:inline-block;
 
-    transform: translate(0, 0);
+    transform: translate(${(props) => props.XOffset}vw, ${(props) => props.YOffset}vh); 
 
     &.letter-appear, &.letter-enter{
         transform: translate(${(props) => props.XOffset}vw, ${(props) => props.YOffset}vh); 
@@ -20,7 +20,6 @@ const StyledLetter = styled.span`
         transition: all;
        
         transition-duration: ${(props) => props.duration}ms;
-        transition-delay: ${(props) => props.delay}ms;
         
 
 
@@ -40,15 +39,15 @@ const StyledLetter = styled.span`
 const Letter = (props) => {
     return (
         <CSSTransition
-            appear = {true} 
-            in = {true}
+            in = {props.isGridDone}
             classNames = 'letter'
-            timeout = {props.duration + props.delay}>
+            timeout = {props.duration}>
             <StyledLetter 
                 XOffset = {props.XOffset}
                 YOffset = {props.YOffset}
                 duration = {props.duration}
-                delay = {props.delay} >
+                isGridDone = {props.isGridDone}
+            >
                 {props.char}
             </StyledLetter>
         </CSSTransition>

@@ -10,19 +10,16 @@ const StyledBanner = styled.div`
 `;
 class Hero extends React.Component {
     render() {
-        console.log(this.props.isGridDone);
-        if (this.props.isGridDone) {
         return (
             <div className='row hero'>
         <div className='col l3 s0 ' />
         <StyledBanner className='col l6 s12'>
-            <Name firstName='Michael' middleName='Newman' lastName='Fortunato' />
-           
+            <Name isGridDone = {this.props.isGridDone} firstName='Michael' middleName='Newman' lastName='Fortunato' />
+           <Description />
         </StyledBanner>
         <div className='col l3 s0' />
     </div>
         );
-        } else return null;
     }
 }
 
