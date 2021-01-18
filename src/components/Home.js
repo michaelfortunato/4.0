@@ -22,14 +22,12 @@ class Home extends React.Component {
         this.setIsGridDone = this.setIsGridDone.bind(this); //will bind ("this" to this class vs. the child class)
     }
     setIsGridDone() {
-        console.log("Made it!");
         this.setState({isGridDone: true});
     }
     render() {
-        console.log(x)
         return (
             <div>
-                <Grid  {...defaultGridProps} setIsGridDone = {this.setIsGridDone} />
+                ${!this.state.isGridDone ? <Grid  {...defaultGridProps} setIsGridDone = {this.setIsGridDone} /> : ""}
                 <Hero isGridDone = {this.state.isGridDone}/>
             </div>
         );

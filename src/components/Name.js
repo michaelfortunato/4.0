@@ -1,6 +1,6 @@
 import React from 'react'
 import { CSSTransition } from 'react-transition-group';
-import  styled  from 'styled-components';
+import styled from 'styled-components';
 import { Letter, StyledLetter } from './Letter.js'
 
 
@@ -19,68 +19,47 @@ const StyledName = styled.div`
 `;
 
 
-const randomArcPoint = (radius) => {
-    let theta = (2 * Math.random() * Math.PI);
-    return ({x: radius * Math.cos(theta), y: radius *Math.cos(theta) });
-}
-
-
-
-const configSetup = (char, index) => {
-    let config = {}
-    config.char = char;
-    config.XOffset = randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
-    config.YOffset = randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
-    config.duration = 600;
-    config.delay = 5850;
-    return config;
-}
-
-
-const Name = (props) => {
-    let config = {};
-    let firstName = props.firstName.split('');
-    let middleName = props.middleName.split('');
-    let lastName = props.lastName.split('');
-
-
-    firstName = firstName.map( (char, index) => {
-        config = configSetup(char, index);
-        return (<Letter key = {index} {...config} isGridDone = {props.isGridDone}/>
-        );
-    });
-
-
-    middleName = middleName.map( (char, index) => {
-        config = configSetup(char, index);
-        return (<Letter key = {index + 7} {...config} isGridDone = {props.isGridDone}/>
-        );
-    });
-
-    lastName = lastName.map( (char, index) => {
-        config = configSetup(char, index);
-        return (<Letter key = {index + 16} {...config} isGridDone = {props.isGridDone}/>
-        );
-    });
-
-
-
-        return(
-            
-            <StyledName>
-               
-                <div style = {{'display': 'inline-block', 'margin-right': '10px'}}>
-                {firstName}      
-                </div>  
-                
-          
-                <div style = {{'display': 'inline-block', 'margin-left': '10px'}}>
-                {lastName}
-                </div>
-             
-            </StyledName>);
-
-
+class Name extends React.Component {
+    constructor(props) {
+        super(props);
+        this.firstName = this.buildLettersFromName(this.props.firstName, 0);
+        this.middleName = this.buildLettersFromName(this.props.middleName, 7);
+        this.lastName = this.buildLettersFromName(this.props.lastName,7);
+        console.log(this.lastName[0])
+    }
+    buildLettersFromName(name, identifier) {
+        let config = {};
+        let letters = name.split('');
+        letters = letters.map((char, index) => {
+            config = this.configSetup(char, index);
+            return (<Letter key={index + identifier} {...config} isGridDone={this.props.isGridDone} />);
+        });
+        console.log(letters);
+        return letters;
+    }
+    configSetup(char, index) {
+        let config = {}
+        config.char = char;
+        config.XOffset = this.randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
+        config.YOffset = this.randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
+        config.duration = 600;
+        return config
+    }
+    randomArcPoint = (radius) => {
+        let theta = (2 * Math.random() * Math.PI);
+        return ({ x: radius * Math.cos(theta), y: radius * Math.cos(theta) });
+    }
+    render() {
+        console.log(this.firstName[0].props.isGridDone)
+        return (<StyledName>
+            <div style={{ 'display': 'inline-block', 'marginRight': '10px' }}>
+                {this.firstName}
+            </div>
+            <div style={{ 'display': 'inline-block', 'marginLeft': '10px' }}>
+                {this.lastName}
+            </div>
+        </StyledName>);
+    }
 }
 
 export default Name;

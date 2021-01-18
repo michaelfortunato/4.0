@@ -20,13 +20,9 @@ const StyledLetter = styled.span`
         transition: all;
        
         transition-duration: ${(props) => props.duration}ms;
-        
-
-
-
-    
     
     }
+
     &.letter-appear-done, &.letter-enter-done{
          transform: translate(0, 0);
     

@@ -92,11 +92,11 @@ class Grid extends React.Component {
         <CSSTransition
             appear = {true}
             in = {true}
-            timeout = {this.totalTimeout}
+            timeout = {this.props.duration + this.totalTimeout}
             onEntered = {this.props.setIsGridDone}
             classNames = 'fade-out'
             >
-            <StyledGrid duration = {this.props.duration} delay = {this.props.delay}> 
+            <StyledGrid duration = {this.props.duration} delay = {this.totalTimeout}> 
                 {this.rowLines} 
                 {this.colLines} 
             </StyledGrid> 
