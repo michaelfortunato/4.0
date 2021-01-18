@@ -15,7 +15,7 @@ class Hero extends React.Component {
         <div className='col l3 s0 ' />
         <StyledBanner className='col l6 s12'>
             <Name isGridDone = {this.props.isGridDone} firstName='Michael' middleName='Newman' lastName='Fortunato' />
-           <Description />
+           { this.props.isGridDone ? <Description /> : null }
         </StyledBanner>
         <div className='col l3 s0' />
     </div>

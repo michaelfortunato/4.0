@@ -29,8 +29,7 @@ const StyledDescription = styled.div`
 `;
 
 const Description = (props) => {
- 
-    console.log(tags.length);
+
 
     let n = tags.length;
 

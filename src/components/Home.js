@@ -3,7 +3,6 @@ import { CSSTransition } from 'react-transition-group';
 import Grid from './Grid.js';
 import Hero from './Hero.js';
 
-let x = 0;
 const defaultGridProps = {
     random: true,
     numLines: 12,
