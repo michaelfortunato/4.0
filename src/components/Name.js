@@ -41,7 +41,7 @@ class Name extends React.Component {
         config.char = char;
         config.XOffset = this.randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
         config.YOffset = this.randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
-        config.duration = 600;
+        config.duration = 500;
         return config
     }
     randomArcPoint = (radius) => {

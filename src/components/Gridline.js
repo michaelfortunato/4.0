@@ -12,6 +12,7 @@ const circleYScaling = circleSize/h;
 const StyledGridline = styled.div`
     position: absolute;
     background: white;
+    z-index: 0;
     height: ${(props) => props.isRow ? `${circleSize}px` : '100%'};
     width: ${(props) => props.isRow ? '100%' : `${circleSize}px`};
     top: ${(props) => props.isRow ? `${props.fixedPos}vh`:  'initial'};
@@ -27,14 +28,14 @@ const StyledGridline = styled.div`
     }
     &.line-appear-active, &.line-enter-active {
         
-        transform: ${(props) => props.isRow ? `scaleX(1) scaleY(.1)` : `scaleY(1) scaleX(.1)`};  
+        transform: ${(props) => props.isRow ? `scaleX(1) scaleY(.125)` : `scaleY(1) scaleX(.125)`};  
         transition-duration: ${(props) => props.duration}ms; 
         transition-delay: ${(props) => props.delay}ms; 
         transition-property: all;
         will-change: transform;
     }
     &.line-appear-done, &.line-enter-done {
-        transform: ${(props => props.isRow ? 'scaleX(1) scaleY(.1)': 'scaleY(1) scaleX(.1)')};
+        transform: ${(props => props.isRow ? 'scaleX(1) scaleY(.125)': 'scaleY(1) scaleX(.125)')};
     }
 `;
 
