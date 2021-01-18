@@ -57,12 +57,9 @@ const StyledGridline = styled.div`
 `;
 
 class Gridline extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return ( <CSSTransition
-            in = {this.props.isGridDone}
+            in = {true}
             appear =  {true}
             classNames = "line"
             timeout={this.props.duration + this.props.delay}>

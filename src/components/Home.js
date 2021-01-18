@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import Grid from './Grid.js';
 import Hero from './Hero.js';
 
+let x = 0;
 const defaultGridProps = {
     random: true,
     numLines: 12,
@@ -17,17 +18,19 @@ const defaultGridProps = {
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {gridIsDone : false};
-        this.setGridIsDone = this.setGridIsDone.bind(this); //will bind ("this" to this class vs. the child class)
+        this.state = {isGridDone : false};
+        this.setIsGridDone = this.setIsGridDone.bind(this); //will bind ("this" to this class vs. the child class)
     }
-    setGridIsDone() {
-        this.setState({gridIsDone: true});
+    setIsGridDone() {
+        console.log("Made it!");
+        this.setState({isGridDone: true});
     }
     render() {
+        console.log(x)
         return (
             <div>
-                <Grid  {...defaultGridProps} />
-                <Hero />
+                <Grid  {...defaultGridProps} setIsGridDone = {this.setIsGridDone} />
+                <Hero isGridDone = {this.state.isGridDone}/>
             </div>
         );
     }
