@@ -4,7 +4,19 @@ import  styled  from 'styled-components';
 import { Letter, StyledLetter } from './Letter.js'
 
 
+const StyledName = styled.div`
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 56px;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    color: #264653;
+    padding-top: 2%;
+    margin-bottom: 0px;
+}
 
+`;
 
 
 const randomArcPoint = (radius) => {
@@ -20,23 +32,10 @@ const configSetup = (char, index) => {
     config.XOffset = randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
     config.YOffset = randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
     config.duration = 600;
-    config.delay = 5850;
+    //config.delay = 5850;
     return config;
 }
 
-const StyledName = styled.div`
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 56px;
-    overflow: visible;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    color: #264653;
-    padding-top: 2%;
-    margin-bottom: 0px;
-}
-
-`;
 
 const Name = (props) => {
     let config = {};

@@ -28,83 +28,68 @@ const StyledGrid = styled.div`
 
 
 `
-const randn_bm = () => {
-    let u = 0;
-    let v = 0;
-    while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
-    while(v === 0) v = Math.random();
-    return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
-}
 
+const defaultGridProps = {
+    random: true,
+    numLines: 12,
+    offset: 0,
+    avgDuration: 200,
+    avgDelay: 3500,
+    duration: 1500,
+    delay: 6500,
+    isDot: true,
+};
 
-
-
-const MIN_DURATION = 400;
-const MIN_DELAY = 1800;
-
-const position = (i, spacing, offset, random) => {
-    let fixedPos = offset + spacing * i;
-    let floatingPos = 100 * (random ? Math.random(): 0);
-    return {fixedPos: fixedPos, floatingPos: floatingPos};
-}
-
-const timing = (avgDuration, avgDelay, random) => {
-    let duration = MIN_DURATION + avgDuration * (random ?  Math.random() : 1);
-    let delay = MIN_DELAY + avgDelay * (random ?  Math.random() : 1); //avgDelay + 200 * randn_bm(); 
-    return {duration: duration, delay, delay};
-}
-
-
-const Grid = (props) => {
-    /* Build Configurations */
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    let rowLines = [];
-    let colLines = [];
-    let spacing = Math.floor(100/props.numLines);
-    /* Configuration Variables */
-    let pos_conf;
-    let time_conf;
-    let conf;
-
-    let totalTimeout = 0;
-    
-    
-
-    /* Row first, so X floats */
-    for(let i = 1; i <= props.numLines; i++) {
-        pos_conf = position(i, spacing, props.offset, props.random);
-        time_conf = timing(props.avgDuration, props.avgDelay, props.random);
-        conf = { ...pos_conf, ...time_conf, isRow: true, isDot: props.isDot, setIsGridDone: props.setIsGridDone, 
-            isGridDone: props.isGridDone}
-        totalTimeout = Math.max(time_conf.duration + time_conf.delay, totalTimeout);
-        rowLines.push(<Gridline key = {i} {...conf} />)
-    } 
-    /* Then column */
-    for(let i = 1; i <= w/h* props.numLines + 1; i++) {
-        pos_conf = position(i, spacing, props.offset, props.random);
-        time_conf = timing(props.avgDuration, props.avgDelay, props.random);
-        conf = { ...pos_conf, ...time_conf, isRow: false, isDot: props.isDot, setIsGridDone: props.setIsGridDone, isGridDone: props.isGridDone}
-        totalTimeout = Math.max(time_conf.duration + time_conf.delay, totalTimeout);
-        colLines.push(<Gridline key = {i + props.numLines} {...conf} />)
+class Grid extends React.Component {
+    constructor(props) {
+        super(props);
+        this.w = window.innerWidth;
+        this.h = window.innerHeight;
+        this.spacing = Math.floor(100/this.props.numLines);
     }
-
-
-        return (
-            <CSSTransition
-                appear = {true}
-                in = {true}
-                timeout = {totalTimeout}
-                classNames = 'fade-out'
-                >
-                <StyledGrid duration = {props.duration} delay = {props.delay}> 
-                    {rowLines} 
-                    {colLines} 
-                </StyledGrid> 
-            </CSSTransition>
-            );
+    position(i) {
+        let fixedPos = this.props.offset + this.spacing * i;
+        let floatingPos = 100 * (this.props.random ? Math.random(): 0);
+        return {fixedPos: fixedPos, floatingPos: floatingPos};
+    }
+    timing (avgDuration, avgDelay, random) {
+        let duration = MIN_DURATION + this.props.avgDuration * (this.props/random ?  Math.random() : 1);
+        let delay = MIN_DELAY + this.props.avgDelay * (this.props.random ?  Math.random() : 1); //avgDelay + 200 * randn_bm(); 
+        return {duration: duration, delay, delay};
+    }
+    configuration(i) {
+        let pos_conf = pos_conf = this.position(i);
+        let time_conf = this.timing();
+        return {...pos_conf, ...time_conf, isDot: true}
+    }
+    setRowLines() {
+        let numRowLines = props.numLines;
+        for (let i = 1; i <= numRowLines; i++) {
+            let conf = this.configuration(i)
+            this.rowLines.push(<Gridline key = {i} IsRow = {true} {...conf} />);
+        } 
+    }
+    setColLines() {
+        let numColLines = this.w/this.h * props.numLines + 1;
+        for (let i = 1; i <= numColLines; i++) {
+            let conf = this.configuration(i);
+            this.colLines.push(<Gridline key = {i + props.numLines} IsRow = {false} {...conf} />)
+        }
+    }
+    render() {
+        return (   
+        <CSSTransition
+            appear = {true}
+            in = {true}
+            timeout = {totalTimeout}
+            classNames = 'fade-out'
+            >
+            <StyledGrid duration = {props.duration} delay = {props.delay}> 
+                {this.rowLines} 
+                {this.colLines} 
+            </StyledGrid> 
+        </CSSTransition>);
+    }
 }
-
-
 
 export default Grid;

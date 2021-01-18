@@ -4,9 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 const StyledGridline = styled.div`
     position: absolute;
-    /*
-    background:#6699CC;
-    */
+    //background:#6699CC;
     //background: #C38D9E;
     z-index: 0;
     background: white;
@@ -58,18 +56,20 @@ const StyledGridline = styled.div`
     }
 `;
 
-
-const Gridline = (props) => {
-    return(
-        <CSSTransition
-        in = {!props.isGridDone}
-        appear =  {true}
-        classNames = "line"
-        timeout={props.duration + props.delay}>
-            <StyledGridline {...props}/>
-        </CSSTransition>   
-    );
-};
-
+class Gridline extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return ( <CSSTransition
+            in = {this.props.isGridDone}
+            appear =  {true}
+            classNames = "line"
+            timeout={this.props.duration + this.props.delay}>
+                <StyledGridline {...this.props}/>
+            </CSSTransition>   
+        );
+    }
+}
 
 export default Gridline;

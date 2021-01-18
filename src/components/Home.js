@@ -1,11 +1,7 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import styled from 'styled-components';
 import Grid from './Grid.js';
-import Name from './Name.js';
-import Triangle from './Triangle.js';
-import Description from './Description.js';
-
+import Hero from './Hero.js';
 
 const defaultGridProps = {
     random: true,
@@ -18,30 +14,24 @@ const defaultGridProps = {
     isDot: true,
 };
 
-const StyledBanner = styled.div`
-    position: relative;
-    top: 12%;
-
-`;
-
-const Home = (props) => {
-
-
-
-    return(
-        <div>
-            <Grid  {...defaultGridProps} />
-            <div className = 'row hero'>
-                    <div className = 'col l3 s0 ' />
-                    <StyledBanner className = 'col l6 s12'>
-                        <Name firstName = 'Michael' middleName = 'Newman' lastName = 'Fortunato'/>
-                        <Description />
-                    </StyledBanner>
-                    <div className = 'col l3 s0' />
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {gridIsDone : false};
+        this.setGridIsDone = this.setGridIsDone.bind(this); //will bind ("this" to this class vs. the child class)
+    }
+    setGridIsDone() {
+        this.setState({gridIsDone: true});
+    }
+    render() {
+        return (
+            <div>
+                <Grid  {...defaultGridProps} />
+                <Hero />
             </div>
-
-        </div>
         );
+    }
+
 }
 
 export default Home;
