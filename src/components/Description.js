@@ -42,7 +42,7 @@ const Description = (props) => {
     let waitTime = moveTime;
     let aniTags = tags.map((tag, index) => {
         return(
-        <DescItem tag = {tag} movePercentage = {movePercentage} totalTime = {totalTime} delay = {waitTime * index}/>
+        <DescItem key = {index} tag = {tag} movePercentage = {movePercentage} totalTime = {totalTime} delay = {waitTime * index}/>
         );
     } );
 

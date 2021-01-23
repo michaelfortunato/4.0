@@ -40,17 +40,22 @@ class Grid extends React.Component {
         offset: 0,
         avgDuration: 190,
         avgDelay: 1500,
-        duration: 600,
+        duration: 750,
         isDot: true,
     }
     constructor(props) {
         super(props);
         this.w = window.innerWidth;
         this.h = window.innerHeight;
-        this.totalTimeout = 0;
+        this.numRowLines = this.props.numLines;
+        this.numColLines = Math.floor(this.w/this.h * this.props.numLines + 1);
+        
+        this.totalGridlineEnterTime = 0;
         this.spacing = Math.floor(100/this.props.numLines);
         this.rowLines = [];
         this.colLines = [];
+        this.state = {rowLinesState: [], colLinesState: []}; //{areFinished : new Array(this.props.numLines)};
+        
         this.setRowLines();
         this.setColLines();
     }
@@ -70,32 +75,30 @@ class Grid extends React.Component {
         return {...pos_conf, ...time_conf, isDot: true}
     }
     setRowLines() {
-        let numRowLines = this.props.numLines;
-
-        for (let i = 1; i <= numRowLines; i++) {
+        for (let i = 1; i <= this.numRowLines; i++) {
             let conf = this.configuration(i);
-            this.totalTimeout = Math.max(conf.duration + conf.delay, this.totalTimeout);
+            this.totalGridlineEnterTime = Math.max(conf.duration + conf.delay, this.totalGridlineEnterTime);
             this.rowLines.push(<Gridline key = {i} isRow = {true} {...conf} />);
         } 
     }
     setColLines() {
-        let numColLines = Math.floor(this.w/this.h * this.props.numLines + 1);
-        for (let i = 1; i <= numColLines; i++) {
+        for (let i = 1; i <= this.numColLines; i++) {
             let conf = this.configuration(i);
-            this.totalTimeout = Math.max(conf.duration + conf.delay, this.totalTimeout);
+            this.totalGridlineEnterTime = Math.max(conf.duration + conf.delay, this.totalGridlineEnterTime);
             this.colLines.push(<Gridline key = {i + this.props.numLines} isRow = {false} {...conf} />)
         }
     }
     render() {
+        this.totalGridlineEnterTime = this.totalGridlineEnterTime + 250;
         return (   
         <CSSTransition
             appear = {true}
             in = {true}
-            timeout = {this.props.duration + this.totalTimeout}
+            timeout = {this.props.duration + this.totalGridlineEnterTime}
             onEntered = {this.props.setIsGridDone}
             classNames = 'fade-out'
             >
-            <StyledGrid duration = {this.props.duration} delay = {this.totalTimeout}> 
+            <StyledGrid duration = {this.props.duration} delay = {this.totalGridlineEnterTime}> 
                 {this.rowLines} 
                 {this.colLines} 
             </StyledGrid> 
