@@ -48,6 +48,13 @@ class Name extends React.Component {
         let theta = (2 * Math.random() * Math.PI);
         return ({ x: radius * Math.cos(theta), y: radius * Math.cos(theta) });
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.isNameDone == true) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     render() {
         return (<StyledName>
             <div style={{ 'display': 'inline-block', 'marginRight': '10px' }}>
@@ -55,6 +62,7 @@ class Name extends React.Component {
                     return (
                         <Letter 
                             key = {index} 
+                            setIsNameDone = {this.props.setIsNameDone}
                             isGridDone = {this.props.isGridDone}
                             {...this.firstNameConfigs[index]}
                         />);
@@ -65,6 +73,7 @@ class Name extends React.Component {
                     return (
                         <Letter 
                             key = {index + 7} 
+                            setIsNameDone = {this.props.setIsNameDone}
                             isGridDone = {this.props.isGridDone}
                             {...this.lastNameConfigs[index]}
                         />);
