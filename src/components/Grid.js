@@ -38,7 +38,7 @@ class Grid extends React.Component {
         random: true,
         numLines: 12,
         offset: 0,
-        avgDuration: 190,
+        avgDuration: 2000,
         avgDelay: 1500,
         duration: 750,
         isDot: true,

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group'
+import NavItem from './NavItem.js';
 
 const StyledNavContent = styled.div`
     position: relative;
@@ -9,7 +10,7 @@ const StyledNavContent = styled.div`
     transform: translateY(-102%);
     background-color: #264653;
     clip-path: polygon(100% 0, 100% 100%, 0% 0%);
-
+    font-size: 10px;
 
 
     z-index: 2;
@@ -53,12 +54,12 @@ const NavContent = (props) => {
         timeout = {400}>
             
             <StyledNavContent className = 'row'>
-                <div className="navbar-item col s1 offset-s8"><span  style = {{'font-size': '10px'}} className="center-align">Home</span></div>
-                <div className="navbar-item col s1"><span style = {{'font-size': '10px'}} className="center-align">About</span></div>
-                <div className="navbar-item col s1"><span style = {{'font-size': '10px'}} className="center-align">Home</span></div>
-                <div className="navbar-item col s1"><span style = {{'font-size': '10px'}} className="center-align">About</span></div>
+                <NavItem isFirst = {true} URL = "/" text = "Home"/>
+                <NavItem URL = "/about" text = "About"/>
+                <NavItem URL = "/Apps" text = "Apps"/>
+                <NavItem URL = "/Blog" text = "Blog"/>
             </StyledNavContent>
-         
+            
         </CSSTransition>
     );
 }
