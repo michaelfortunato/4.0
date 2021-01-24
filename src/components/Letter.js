@@ -32,25 +32,21 @@ const StyledLetter = styled.span`
 `;
 
 
-class Letter extends React.Component {
-    render() {
-        return (
-            <CSSTransition
-                in = {this.props.isGridDone}
-                classNames = 'letter'
-                timeout = {this.props.duration}
-                onEntered = {this.props.setIsNameDone}
-                >
-                <StyledLetter 
-                    XOffset = {this.props.XOffset}
-                    YOffset = {this.props.YOffset}
-                    duration = {this.props.duration}
-                    isGridDone = {this.props.isGridDone}
-                >
-                    {this.props.char}
-                </StyledLetter>
-            </CSSTransition>
-        );
-    }
+const Letter = (props) => {
+    return (
+        <CSSTransition
+            in = {props.isGridDone}
+            classNames = 'letter'
+            timeout = {props.duration}>
+            <StyledLetter 
+                XOffset = {props.XOffset}
+                YOffset = {props.YOffset}
+                duration = {props.duration}
+                isGridDone = {props.isGridDone}
+            >
+                {props.char}
+            </StyledLetter>
+        </CSSTransition>
+    );
 }
 export {Letter, StyledLetter}

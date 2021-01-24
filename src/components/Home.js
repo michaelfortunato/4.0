@@ -17,7 +17,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Grid  setIsGridDone = {this.setIsGridDone} />
+                {!this.state.isGridDone ? <Grid  setIsGridDone = {this.setIsGridDone} /> : ""}
                 <Hero isGridDone = {this.state.isGridDone}/>
             </div>
         );

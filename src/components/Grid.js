@@ -54,13 +54,10 @@ class Grid extends React.Component {
         this.spacing = Math.floor(100/this.props.numLines);
         this.rowLines = [];
         this.colLines = [];
+        this.state = {rowLinesState: [], colLinesState: []}; //{areFinished : new Array(this.props.numLines)};
         
         this.setRowLines();
         this.setColLines();
-        
-   
-        setTimeout(this.props.setIsGridDone, this.totalGridlineEnterTime)
-        this.totalGridlineEnterTime = this.totalGridlineEnterTime + 250;
     }
     position(i) {
         let fixedPos = this.props.offset + this.spacing * i;
@@ -92,11 +89,13 @@ class Grid extends React.Component {
         }
     }
     render() {
+        this.totalGridlineEnterTime = this.totalGridlineEnterTime + 250;
         return (   
         <CSSTransition
             appear = {true}
             in = {true}
             timeout = {this.props.duration + this.totalGridlineEnterTime}
+            onEntered = {this.props.setIsGridDone}
             classNames = 'fade-out'
             >
             <StyledGrid duration = {this.props.duration} delay = {this.totalGridlineEnterTime}> 
