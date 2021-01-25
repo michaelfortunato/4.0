@@ -13,9 +13,11 @@ import {
     Switch
 } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
+import styled from 'styled-components'
 
 
 class App extends React.Component {
+
     render() {
         return (
             <Router>
