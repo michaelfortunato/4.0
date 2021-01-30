@@ -15,6 +15,10 @@ import {
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
+const routes = [
+    { path: '/about', name: 'Home', Component: About },
+    { path: '/', name: 'About', Component: Home }
+]
 
 class App extends React.Component {
 
@@ -23,32 +27,20 @@ class App extends React.Component {
             <Router>
                 <div id='App'>
                     <Navbar />
-                    <Route key="about" exact path="/about">
-                        {({ match }) =>
-                        (<CSSTransition
-                            classNames="fade"
-                            in={match != null}
-                            timeout={1000}
-                            unmountOnExit
-                        >
-                            <div className = "abs">
-                            <About /> </div>
-                            
-                        </CSSTransition>
-                        )}
-                    </Route>
-                    <Route key="/" exact path="/">
-                        {({ match }) =>
-                        (<CSSTransition
-                            classNames="fade"
-                            in={match != null}
-                            timeout={1000}
-                            unmountOnExit
-                        >
-                        <Home /> 
-                        </CSSTransition>
-                        )}
-                    </Route>
+                    {routes.map(({ path, Component }) => (
+                        <Route key={path} exact path={path}>
+                            {({ match }) => (
+                                <CSSTransition
+                                    classNames="fade"
+                                    in={match != null}
+                                    timeout={1000}
+                                    unmountOnExit
+                                >
+                                    <Component match = {match}/>
+                                </CSSTransition>
+                            )}
+                        </Route>
+                    ))}
                 </div>
             </Router>
         );
