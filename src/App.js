@@ -36,7 +36,7 @@ class App extends React.Component {
                                     timeout={1000}
                                     unmountOnExit
                                 >
-                                    <Component match = {match}/>
+                                    <Component routeMatch = {match}/>
                                 </CSSTransition>
                             )}
                         </Route>

@@ -17,16 +17,16 @@ const StyledGrid = styled.div`
     z-index: 1;
     overflow:hidden;
 
-    &.fade-out-appear, &.fade-out-enter{
+    &.fade-out-exit{
         opacity: 1;
     }
-    &.fade-out-appear-active, &.fade-out-enter-active{
+    &.fade-out-exit-active {
         opacity: 0;
         transition: opacity;
         transition-duration: ${(props) => props.duration}ms;
         transition-delay: ${(props) => props.delay}ms;
     }
-    &.fade-out-appear-done, &.fade-out-enter-done{
+    &.fade-out-exit-done{
         opacity: 0;
     }
 
@@ -57,10 +57,12 @@ class Grid extends React.Component {
         
         this.setRowLines();
         this.setColLines();
-        
-   
+    }
+    componentDidMount()
+    {
+        let offset = 250
+        setTimeout(this.props.setAnimateNameIn, this.totalGridlineEnterTime - offset)
         setTimeout(this.props.setIsGridDone, this.totalGridlineEnterTime)
-        this.totalGridlineEnterTime = this.totalGridlineEnterTime + 250;
     }
     position(i) {
         let fixedPos = this.props.offset + this.spacing * i;
@@ -94,12 +96,12 @@ class Grid extends React.Component {
     render() {
         return (   
         <CSSTransition
-            appear = {true}
-            in = {true}
-            timeout = {this.props.duration + this.totalGridlineEnterTime}
+            in = {!this.props.isGridDone}
+            timeout = {this.props.duration}
             classNames = 'fade-out'
+            unmountOnExit 
             >
-            <StyledGrid duration = {this.props.duration} delay = {this.totalGridlineEnterTime}> 
+            <StyledGrid duration = {this.props.duration} > 
                 {this.rowLines} 
                 {this.colLines} 
             </StyledGrid> 

@@ -28,6 +28,18 @@ const StyledLetter = styled.span`
     
     }
 
+    &.letter-exit {
+        transform: translate(0,0);
+    }
+    &.letter-exit-active {
+        transform: translate(20vw, 20vh);
+        transition: all;
+        transition-duration: ${(props) => props.duration}ms;
+    }
+    &.letter-exit-done {
+        transform: translate(20vw, 20vh)
+    }
+
     
 `;
 
@@ -36,7 +48,7 @@ class Letter extends React.Component {
     render() {
         return (
             <CSSTransition
-                in = {this.props.isGridDone}
+                in = {(this.props.animateNameIn) && (this.props.routeMatch != null)}
                 classNames = 'letter'
                 timeout = {this.props.duration}
                 onEntered = {this.props.setIsNameDone}
