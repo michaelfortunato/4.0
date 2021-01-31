@@ -70,7 +70,7 @@ class Grid extends React.Component {
         return {fixedPos: fixedPos, floatingPos: floatingPos};
     }
     timing (avgDuration, avgDelay, random) {
-        let duration = MIN_DURATION + this.props.avgDuration * (this.props/random ?  Math.random() : 1);
+        let duration = MIN_DURATION + this.props.avgDuration * (false ?  Math.random() : 1);
         let delay = MIN_DELAY + this.props.avgDelay * (this.props.random ?  Math.random() : 1); //avgDelay + 200 * randn_bm(); 
         return {duration: duration, delay : delay};
     }

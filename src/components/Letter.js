@@ -7,10 +7,10 @@ const StyledLetter = styled.span`
     position: relative;
     display:inline-block;
 
-    transform: translate(${(props) => props.XOffset}vw, ${(props) => props.YOffset}vh); 
+    transform: translate(${(props) => props.XOffsetIn}vw, ${(props) => props.YOffsetIn}vh); 
 
     &.letter-appear, &.letter-enter{
-        transform: translate(${(props) => props.XOffset}vw, ${(props) => props.YOffset}vh); 
+        transform: translate(${(props) => props.XOffsetIn}vw, ${(props) => props.YOffsetIn}vh); 
     }
     
     &.letter-appear-active, &.letter-enter-active{
@@ -19,7 +19,7 @@ const StyledLetter = styled.span`
 
         transition: all;
        
-        transition-duration: ${(props) => props.duration}ms;
+        transition-duration: ${(props) => props.durationIn}ms;
     
     }
 
@@ -32,12 +32,14 @@ const StyledLetter = styled.span`
         transform: translate(0,0);
     }
     &.letter-exit-active {
-        transform: translate(20vw, 20vh);
+        transform: translate(${(props) => props.XOffsetOut}vw, ${(props) => props.YOffsetOut}vh);
         transition: all;
-        transition-duration: ${(props) => props.duration}ms;
+        transition-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+        transition-duration: ${(props) => props.durationOut}ms;
+        transition-delay: ${(props) => props.delayOut}ms;
     }
     &.letter-exit-done {
-        transform: translate(20vw, 20vh)
+        transform: translate(${(props) => props.XOffsetOut}vw, ${(props) => props.YOffsetOut}vh);
     }
 
     
@@ -50,13 +52,20 @@ class Letter extends React.Component {
             <CSSTransition
                 in = {(this.props.animateNameIn) && (this.props.routeMatch != null)}
                 classNames = 'letter'
-                timeout = {this.props.duration}
+                timeout = {{
+                    enter: this.props.durationIn,
+                    exit: this.props.durationOut + this.props.delayOut
+                }}
                 onEntered = {this.props.setIsNameDone}
                 >
                 <StyledLetter 
-                    XOffset = {this.props.XOffset}
-                    YOffset = {this.props.YOffset}
-                    duration = {this.props.duration}
+                    XOffsetIn = {this.props.XOffsetIn}
+                    YOffsetIn = {this.props.YOffsetIn}
+                    durationIn = {this.props.durationIn}
+                    XOffsetOut = {this.props.XOffsetOut}
+                    YOffsetOut = {this.props.YOffsetOut}
+                    durationOut = {this.props.durationOut}
+                    delayOut = {this.props.delayOut}
                     isGridDone = {this.props.isGridDone}
                 >
                     {this.props.char}
