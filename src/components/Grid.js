@@ -62,7 +62,6 @@ class Grid extends React.Component {
     {
         let offset = 250
         setTimeout(this.props.setAnimateNameIn, this.totalGridlineEnterTime - offset)
-        setTimeout(this.props.setIsGridDone, this.totalGridlineEnterTime)
     }
     position(i) {
         let fixedPos = this.props.offset + this.spacing * i;
@@ -96,9 +95,10 @@ class Grid extends React.Component {
     render() {
         return (   
         <CSSTransition
-            in = {!this.props.isGridDone}
+            in = {this.props.animateNameIn == false || this.props.isNameDone == false}
             timeout = {this.props.duration}
             classNames = 'fade-out'
+            onExited = {this.props.setIsGridDone}
             unmountOnExit 
             >
             <StyledGrid duration = {this.props.duration} > 
