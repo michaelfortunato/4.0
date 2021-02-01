@@ -28,19 +28,19 @@ class App extends React.Component {
                 <div id='App'>
                     <Navbar />
                     {routes.map(({ path, Component }) => (
-                        <Route key={path} exact path={path} children = 
+                        <Route key={path} exact path={path}>
                             {({ match }) => (
                                 <CSSTransition
                                     classNames="fade"
                                     in={match != null}
-                                    timeout={3000}
+                                    timeout={1000}
                                     unmountOnExit
                                 >
-                                    <Component routeMatch = {match}/>
+                                    <Component match = {match}/>
                                 </CSSTransition>
                             )}
-                    />
-                            ))}
+                        </Route>
+                    ))}
                 </div>
             </Router>
         );

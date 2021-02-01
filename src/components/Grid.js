@@ -17,16 +17,16 @@ const StyledGrid = styled.div`
     z-index: 1;
     overflow:hidden;
 
-    &.fade-out-exit{
+    &.fade-out-appear, &.fade-out-enter{
         opacity: 1;
     }
-    &.fade-out-exit-active {
+    &.fade-out-appear-active, &.fade-out-enter-active{
         opacity: 0;
         transition: opacity;
         transition-duration: ${(props) => props.duration}ms;
         transition-delay: ${(props) => props.delay}ms;
     }
-    &.fade-out-exit-done{
+    &.fade-out-appear-done, &.fade-out-enter-done{
         opacity: 0;
     }
 
@@ -57,11 +57,10 @@ class Grid extends React.Component {
         
         this.setRowLines();
         this.setColLines();
-    }
-    componentDidMount()
-    {
-        let offset = 250
-        setTimeout(this.props.setAnimateNameIn, this.totalGridlineEnterTime - offset)
+        
+   
+        setTimeout(this.props.setIsGridDone, this.totalGridlineEnterTime)
+        this.totalGridlineEnterTime = this.totalGridlineEnterTime + 250;
     }
     position(i) {
         let fixedPos = this.props.offset + this.spacing * i;
@@ -69,7 +68,7 @@ class Grid extends React.Component {
         return {fixedPos: fixedPos, floatingPos: floatingPos};
     }
     timing (avgDuration, avgDelay, random) {
-        let duration = MIN_DURATION + this.props.avgDuration * (false ?  Math.random() : 1);
+        let duration = MIN_DURATION + this.props.avgDuration * (this.props/random ?  Math.random() : 1);
         let delay = MIN_DELAY + this.props.avgDelay * (this.props.random ?  Math.random() : 1); //avgDelay + 200 * randn_bm(); 
         return {duration: duration, delay : delay};
     }
@@ -95,13 +94,12 @@ class Grid extends React.Component {
     render() {
         return (   
         <CSSTransition
-            in = {this.props.animateNameIn == false || this.props.isNameDone == false}
-            timeout = {this.props.duration}
+            appear = {true}
+            in = {true}
+            timeout = {this.props.duration + this.totalGridlineEnterTime}
             classNames = 'fade-out'
-            onExited = {this.props.setIsGridDone}
-            unmountOnExit 
             >
-            <StyledGrid duration = {this.props.duration} > 
+            <StyledGrid duration = {this.props.duration} delay = {this.totalGridlineEnterTime}> 
                 {this.rowLines} 
                 {this.colLines} 
             </StyledGrid> 

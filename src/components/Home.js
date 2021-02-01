@@ -8,19 +8,8 @@ import Hero from './Hero.js';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {animateNameIn : false, 
-                    isNameDone: false,
-                    isGridDone : false
-                };
-        this.setAnimateNameIn = this.setAnimateNameIn.bind(this);
-        this.setIsNameDone = this.setIsNameDone.bind(this); //The line behind will bind the "this" keyword to an object of this class, rather than an object of the child class.
+        this.state = {isGridDone : false};
         this.setIsGridDone = this.setIsGridDone.bind(this); //will bind ("this" to this class vs. the child class)
-    } 
-    setAnimateNameIn() {
-        this.setState({animateNameIn: true});
-    }
-    setIsNameDone() {
-        this.setState({ isNameDone: true });
     }
     setIsGridDone() {
         this.setState({isGridDone: true});
@@ -28,8 +17,8 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Grid  animateNameIn = {this.state.animateNameIn} isNameDone = {this.state.isNameDone} setAnimateNameIn = {this.setAnimateNameIn} setIsGridDone = {this.setIsGridDone} />
-                <Hero routeMatch = {this.props.routeMatch} animateNameIn = {this.state.animateNameIn} isNameDone = {this.state.isNameDone} setIsNameDone = {this.setIsNameDone} isGridDone = {this.state.isGridDone}/>
+                <Grid  setIsGridDone = {this.setIsGridDone} />
+                <Hero isGridDone = {this.state.isGridDone}/>
             </div>
         );
     }

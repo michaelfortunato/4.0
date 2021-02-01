@@ -32,32 +32,24 @@ class Name extends React.Component {
         let letters = name.split('');
         configsList = letters.map((char, index) => {
             config = this.configSetup(char, index);
-            return config;
+            return (config);
         });
         return configsList;
     }
     configSetup(char, index) {
         let config = {}
         config.char = char;
-        config.XOffsetIn = this.randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
-        config.YOffsetIn = this.randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
-        config.durationIn = 500;
-
-        config.XOffsetOut = 100
-        config.YOffsetOut = this.uniform(-100,100)
-        config.durationOut = 800 + Math.random() * 400 // in ms
-        config.delayOut = 600 + Math.random() * 2000 // Staggered delay in ms
+        config.XOffset = this.randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
+        config.YOffset = this.randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
+        config.duration = 500;
         return config
     }
-    randomArcPoint(radius) {
+    randomArcPoint = (radius) => {
         let theta = (2 * Math.random() * Math.PI);
         return ({ x: radius * Math.cos(theta), y: radius * Math.cos(theta) });
     }
-    uniform(min, max) {
-            return Math.random() * (max - min) + min;
-    } 
     shouldComponentUpdate(nextProps, nextState) {
-        if ( (nextProps.isNameDone == true) && (this.props.routeMatch != null)) {
+        if (nextProps.isNameDone == true) {
             return false;
         } else {
             return true;
@@ -70,9 +62,8 @@ class Name extends React.Component {
                     return (
                         <Letter 
                             key = {index} 
-                            routeMatch = {this.props.routeMatch}
                             setIsNameDone = {this.props.setIsNameDone}
-                            animateNameIn = {this.props.animateNameIn}
+                            isGridDone = {this.props.isGridDone}
                             {...this.firstNameConfigs[index]}
                         />);
                 })}
@@ -81,10 +72,9 @@ class Name extends React.Component {
             {this.props.lastName.split('').map((char, index) => {
                     return (
                         <Letter 
-                            key = {index + 7}
-                            routeMatch = {this.props.routeMatch} 
+                            key = {index + 7} 
                             setIsNameDone = {this.props.setIsNameDone}
-                            animateNameIn = {this.props.animateNameIn}
+                            isGridDone = {this.props.isGridDone}
                             {...this.lastNameConfigs[index]}
                         />);
                 })}
