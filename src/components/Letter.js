@@ -7,10 +7,10 @@ const StyledLetter = styled.span`
     position: relative;
     display:inline-block;
 
-    transform: translate(${(props) => props.XOffset}vw, ${(props) => props.YOffset}vh); 
+    transform: translate(${(props) => props.XOffsetEnter}vw, ${(props) => props.YOffsetEnter}vh); 
 
     &.letter-appear, &.letter-enter{
-        transform: translate(${(props) => props.XOffset}vw, ${(props) => props.YOffset}vh); 
+        transform: translate(${(props) => props.XOffsetEnter}vw, ${(props) => props.YOffsetEnter}vh); 
     }
     
     &.letter-appear-active, &.letter-enter-active{
@@ -19,12 +19,13 @@ const StyledLetter = styled.span`
 
         transition: all;
        
-        transition-duration: ${(props) => props.duration}ms;
+        transition-duration: ${(props) => props.durationEnter}ms;
     
     }
 
     &.letter-appear-done, &.letter-enter-done{
          transform: translate(0, 0);
+
     
     }
 
@@ -38,13 +39,16 @@ class Letter extends React.Component {
             <CSSTransition
                 in = {this.props.isGridDone}
                 classNames = 'letter'
-                timeout = {this.props.duration}
+                timeout = {{
+                    enter: this.props.durationEnter,
+                    exit: this.props.durationExit + this.props.delayExit
+                }}
                 onEntered = {this.props.setIsNameDone}
                 >
                 <StyledLetter 
-                    XOffset = {this.props.XOffset}
-                    YOffset = {this.props.YOffset}
-                    duration = {this.props.duration}
+                    XOffsetEnter = {this.props.XOffsetEnter}
+                    YOffsetEnter = {this.props.YOffsetEnter}
+                    durationEnter = {this.props.durationEnter}
                     isGridDone = {this.props.isGridDone}
                 >
                     {this.props.char}

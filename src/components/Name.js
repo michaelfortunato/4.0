@@ -39,10 +39,18 @@ class Name extends React.Component {
     configSetup(char, index) {
         let config = {}
         config.char = char;
-        config.XOffset = this.randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
-        config.YOffset = this.randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
-        config.duration = 500;
+        config.XOffsetEnter = this.randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
+        config.YOffsetEnter = this.randomArcPoint(38).y;// ((index % 2) == 0) ? -75 : 75;
+        config.durationEnter = 500;
+
+        config.XOffsetExit = 100;
+        config.YOffsetExit= this.uniformRandom(-100, 100);
+        config.durationExit = 400;
+        config.delayExit = index * 400;
         return config
+    }
+    uniformRandom(min, max) {
+        return Math.random() * (max - min) + min
     }
     randomArcPoint = (radius) => {
         let theta = (2 * Math.random() * Math.PI);
