@@ -11,7 +11,6 @@ const StyledBanner = styled.div`
 class Hero extends React.Component {
     constructor(props) {
         super(props);
-        //test
         this.state = { isNameDone: false }
         this.setIsNameDone = this.setIsNameDone.bind(this); //The line behind will bind the "this" keyword to an object of this class, rather than an object of the child class.
     }
