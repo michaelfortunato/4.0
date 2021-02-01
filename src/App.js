@@ -33,7 +33,7 @@ class App extends React.Component {
                                 <CSSTransition
                                     classNames="fade"
                                     in={match != null}
-                                    timeout={1000}
+                                    timeout={7000}
                                     unmountOnExit
                                 >
                                     <Component routeMatch = {match}/>

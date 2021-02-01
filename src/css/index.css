@@ -88,6 +88,7 @@
 .fade-exit-active{
     opacity: 0;
     transition: opacity 1000ms;
+    transition-delay:6000ms;
 }
 .fade-exit-done{
     opacity: 0;
