@@ -45,8 +45,8 @@ class Name extends React.Component {
 
         config.XOffsetExit = 100;
         config.YOffsetExit= this.uniformRandom(-100, 100);
-        config.durationExit = 400;
-        config.delayExit = index * 400;
+        config.durationExit = 700;
+        config.delayExit = 200 + Math.random() * 1000;
         return config
     }
     uniformRandom(min, max) {
