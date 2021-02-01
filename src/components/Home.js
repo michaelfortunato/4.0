@@ -8,17 +8,21 @@ import Hero from './Hero.js';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isGridDone : false};
+        this.state = { isGridDone: false , gridIsDone: false};
         this.setIsGridDone = this.setIsGridDone.bind(this); //will bind ("this" to this class vs. the child class)
+        this.setGridIsDone = this.setGridIsDone.bind(this);
     }
     setIsGridDone() {
-        this.setState({isGridDone: true});
+        this.setState({ isGridDone: true });
+    }
+    setGridIsDone() {
+        this.setState( { gridIsDone: true} );
     }
     render() {
         return (
             <div>
-                <Grid  setIsGridDone = {this.setIsGridDone} />
-                <Hero isGridDone = {this.state.isGridDone}/>
+                { !this.state.gridIsDone ? <Grid setIsGridDone={this.setIsGridDone} setGridIsDone = {this.setGridIsDone} /> : null}
+                <Hero isGridDone={this.state.isGridDone} routeMatch = {this.props.routeMatch} />
             </div>
         );
     }

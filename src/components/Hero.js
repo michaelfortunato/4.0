@@ -23,7 +23,7 @@ class Hero extends React.Component {
             <div className='row hero'>
                 <div className='col l3 s0 ' />
                 <StyledBanner className='col l6 s12'>
-                    <Name firstName='Michael' middleName='Newman' lastName='Fortunato' isNameDone = {this.state.isNameDone} setIsNameDone={this.setIsNameDone} isGridDone={this.props.isGridDone} />
+                    <Name firstName='Michael' middleName='Newman' lastName='Fortunato' isNameDone = {this.state.isNameDone} setIsNameDone={this.setIsNameDone} isGridDone={this.props.isGridDone} routeMatch = {this.props.routeMatch}/>
                     {this.state.isNameDone ? <Description /> : null}
                 </StyledBanner>
                 <div className='col l3 s0' />

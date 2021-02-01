@@ -57,7 +57,7 @@ class Name extends React.Component {
         return ({ x: radius * Math.cos(theta), y: radius * Math.cos(theta) });
     }
     shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.isNameDone == true) {
+        if (nextProps.isNameDone == true && nextProps.routeMatch != null) {
             return false;
         } else {
             return true;
@@ -72,6 +72,7 @@ class Name extends React.Component {
                             key = {index} 
                             setIsNameDone = {this.props.setIsNameDone}
                             isGridDone = {this.props.isGridDone}
+                            routeMatch = {this.props.routeMatch}
                             {...this.firstNameConfigs[index]}
                         />);
                 })}
@@ -83,6 +84,7 @@ class Name extends React.Component {
                             key = {index + 7} 
                             setIsNameDone = {this.props.setIsNameDone}
                             isGridDone = {this.props.isGridDone}
+                            routeMatch = {this.props.routeMatch}
                             {...this.lastNameConfigs[index]}
                         />);
                 })}

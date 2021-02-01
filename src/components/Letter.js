@@ -1,5 +1,5 @@
 import React from 'react'
-import  styled  from 'styled-components';
+import styled from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 
@@ -25,9 +25,22 @@ const StyledLetter = styled.span`
 
     &.letter-appear-done, &.letter-enter-done{
          transform: translate(0, 0);
-
-    
     }
+
+    &.letter-exit {
+        transform: translate(0,0);
+    }
+    &.letter-exit-active {
+        transform: translate(${(props) => props.XOffsetExit}vw, ${(props) => props.YOffsetExit}vh);
+        transition: all;
+        transition-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+        transition-duration: ${(props) => props.durationExit}ms;
+        transition-delay: ${(props) => props.delayExit}ms;
+    }
+    &.letter-exit-done {
+        transform: translate(${(props) => props.XOffsetExit}vw, ${(props) => props.YOffsetExit}vh);
+    }
+
 
     
 `;
@@ -37,19 +50,23 @@ class Letter extends React.Component {
     render() {
         return (
             <CSSTransition
-                in = {this.props.isGridDone}
-                classNames = 'letter'
-                timeout = {{
+                in={(this.props.isGridDone) && (this.props.routeMatch != null)}
+                classNames='letter'
+                timeout={{
                     enter: this.props.durationEnter,
                     exit: this.props.durationExit + this.props.delayExit
                 }}
-                onEntered = {this.props.setIsNameDone}
-                >
-                <StyledLetter 
-                    XOffsetEnter = {this.props.XOffsetEnter}
-                    YOffsetEnter = {this.props.YOffsetEnter}
-                    durationEnter = {this.props.durationEnter}
-                    isGridDone = {this.props.isGridDone}
+                onEntered={this.props.setIsNameDone}
+            >
+                <StyledLetter
+                    XOffsetEnter={this.props.XOffsetEnter}
+                    YOffsetEnter={this.props.YOffsetEnter}
+                    durationEnter={this.props.durationEnter}
+                    XOffsetExit = {this.props.XOffsetExit}
+                    YOffsetExit = {this.props.YOffsetExit}
+                    durationExit = {this.props.durationExit}
+                    delayExit = {this.props.delayExit}
+                    isGridDone={this.props.isGridDone}
                 >
                     {this.props.char}
                 </StyledLetter>
@@ -57,4 +74,4 @@ class Letter extends React.Component {
         );
     }
 }
-export {Letter, StyledLetter}
+export { Letter, StyledLetter }
