@@ -8,7 +8,7 @@ class About extends React.Component {
     render() {
         return (
             <StyledAbout>
-                <p>YEOOOOOOO</p>
+                <p></p>
             </StyledAbout>);
     }
 }
