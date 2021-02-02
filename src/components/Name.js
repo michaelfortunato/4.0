@@ -31,12 +31,12 @@ class Name extends React.Component {
         let config = {};
         let letters = name.split('');
         configsList = letters.map((char, index) => {
-            config = this.configSetup(char, index);
+            config = this.configSetup(char, index,identifier);
             return (config);
         });
         return configsList;
     }
-    configSetup(char, index) {
+    configSetup(char, index, identifier) {
         let config = {}
         config.char = char;
         config.XOffsetEnter = this.randomArcPoint(38).x; //((index % 2) == 0) ? 25 : -25;
@@ -44,9 +44,9 @@ class Name extends React.Component {
         config.durationEnter = 500;
 
         config.XOffsetExit = 100;
-        config.YOffsetExit= this.uniformRandom(-100, 100);
-        config.durationExit = 700;
-        config.delayExit = 200 + Math.random() * 1000;
+        config.YOffsetExit= this.uniformRandom(-200, 200);
+        config.durationExit = 900;
+        config.delayExit = 100 * (index + identifier) + Math.random() * 400;
         return config
     }
     uniformRandom(min, max) {
