@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const StyledBanner = styled.div`
     position: relative;
-    top: 12%;
+    top: 16%;
 
 `;
 class Hero extends React.Component {

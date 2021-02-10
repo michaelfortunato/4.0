@@ -25,19 +25,12 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div id='App'>
+                <div>
                     <Navbar />
                     {routes.map(({ path, Component }) => (
                         <Route key={path} exact path={path}>
                             {({ match }) => (
-                                <CSSTransition
-                                    classNames="f ade"
-                                    in={match != null}
-                                    timeout={7000}
-                                    unmountOnExit
-                                >
-                                    <Component routeMatch = {match}/>
-                                </CSSTransition>
+                               <Component routeMatch = {match}/>
                             )}
                         </Route>
                     ))}

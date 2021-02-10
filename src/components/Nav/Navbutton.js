@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 
 const StyledNavbutton = styled.div`
     position: absolute;
-    top: 4.5%;
+    top: 25%;
     left:2.5%;
     color :#F5F5F5; 
     font-size: 65px;

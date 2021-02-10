@@ -5,12 +5,10 @@ import Navbutton from './Navbutton.js';
 
 
 const StyledNavbar = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 25%;
     font-size: 5px;
-
-
-
+    position: absolute;
 
 `;
 
