@@ -31,7 +31,7 @@ class App extends React.Component {
                         <Route key={path} exact path={path}>
                             {({ match }) => (
                                 <CSSTransition
-                                    classNames="fade"
+                                    classNames="f ade"
                                     in={match != null}
                                     timeout={7000}
                                     unmountOnExit
