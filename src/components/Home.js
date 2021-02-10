@@ -7,6 +7,7 @@ import Hero from './Hero.js';
 
 const StyledHome = styled.div `
     background: #e6af4b;
+    overflow: hidden;
     position: absolute;
     width: 100%;
     height: 100%;
