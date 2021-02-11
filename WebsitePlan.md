@@ -27,4 +27,9 @@
 Day 1: Build BackGround Color Transition 
 Day 2: Build WireFrame
 Day 3: Beging Long Term Goal B. Build Webserver Write small plan for it after researching it on this day
-Day 4: Address Short Term goal d. 
+Day 4: Address Short Term goal d.
+
+2/10/2021 - Rewrite state variable names for home 
+	isGridDone -> gridEntered
+	isNameDone -> nameEntered
+	homeMounted
