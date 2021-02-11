@@ -70,6 +70,7 @@ class Name extends React.Component {
                     return (
                         <Letter 
                             key = {index} 
+                            isNameDone = {this.props.isNameDone} 
                             setIsNameDone = {this.props.setIsNameDone}
                             isGridDone = {this.props.isGridDone}
                             routeMatch = {this.props.routeMatch}
@@ -81,7 +82,8 @@ class Name extends React.Component {
             {this.props.lastName.split('').map((char, index) => {
                     return (
                         <Letter 
-                            key = {index + 7} 
+                            key = {index + 7}
+                            isNameDone = {this.props.isNameDone} 
                             setIsNameDone = {this.props.setIsNameDone}
                             isGridDone = {this.props.isGridDone}
                             routeMatch = {this.props.routeMatch}

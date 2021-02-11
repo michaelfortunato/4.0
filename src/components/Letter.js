@@ -50,7 +50,7 @@ class Letter extends React.Component {
     render() {
         return (
             <CSSTransition
-                in={(this.props.isGridDone) && (this.props.routeMatch != null)}
+                in={(this.props.isGridDone) && (this.props.routeMatch != null) && (this.props.isNameDone == false)}
                 classNames='letter'
                 timeout={{
                     enter: this.props.durationEnter,

@@ -11,16 +11,33 @@ const StyledHome = styled.div `
     position: absolute;
     width: 100%;
     height: 100%;
-    &.home-enter {
 
+
+    &.home-enter {
+        opacity: 0;
     }
     &.home-enter-active {
-
+        opacity: 1;
+        transition-property: opacity;
+        transition-duration: 300ms;
+        transition-delay: 0ms;
     }
     &.home-enter-done {
-
+        opacity: 1;
     }
 
+    &.home-exit {
+        opacity: 1;
+    }
+    &.home-exit-active {
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: 300ms;
+        transition-delay: 3000ms;
+    }
+    &.home-exit-done {
+        opacity: 0;
+    }
 `;
 
 class Home extends React.Component {
@@ -39,9 +56,9 @@ class Home extends React.Component {
     render() {
         return (
             <CSSTransition
-                classNames="fade"
+                classNames="home"
                 in={this.props.routeMatch != null}
-                timeout={1000}
+                timeout={3300}
                 unmountOnExit
             >
                <StyledHome> 
