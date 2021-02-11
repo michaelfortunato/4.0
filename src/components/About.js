@@ -9,9 +9,23 @@ const StyledAbout = styled.div`
     position: absolute;
 `;
 class About extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fromLocation: "/"
+        }
+    }
+    componentDidUpdate() {
+        if (this.props.location != this.state.fromLocation) {
+            this.setState({ fromLocation: this.props.location})
+        }
+    }
     render() {
+        if ( (this.state.fromLocation == "/") && (this.props.location == "/about") ) {
+            console.log("Implement wait timer");
+        }
         return (
-             <CSSTransition
+            <CSSTransition
                 classNames="fade"
                 in={this.props.routeMatch != null}
                 timeout={1000}

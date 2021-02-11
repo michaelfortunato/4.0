@@ -29,8 +29,8 @@ class App extends React.Component {
                     <Navbar />
                     {routes.map(({ path, Component }) => (
                         <Route key={path} exact path={path}>
-                            {({ match }) => (
-                               <Component routeMatch = {match}/>
+                            {({ location, match }) => (
+                               <Component routeMatch = {match} location = {location.pathname} />
                             )}
                         </Route>
                     ))}
