@@ -11,20 +11,26 @@ const StyledBanner = styled.div`
 class Hero extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isNameDone: false }
-        this.setIsNameDone = this.setIsNameDone.bind(this); //The line behind will bind the "this" keyword to an object of this class, rather than an object of the child class.
+        this.state = { nameEntered: false }
+        this.setNameEntered = this.setNameEntered.bind(this); //The line behind will bind the "this" keyword to an object of this class, rather than an object of the child class.
     }
-    setIsNameDone() {
-        this.setState({ isNameDone: true });
+    setNameEntered() {
+        this.setState({ nameEntered: true });
     }
-    
+
     render() {
         return (
             <div className='row hero'>
                 <div className='col l3 s0 ' />
                 <StyledBanner className='col l6 s12'>
-                    <Name firstName='Michael' middleName='Newman' lastName='Fortunato' isNameDone = {this.state.isNameDone} setIsNameDone={this.setIsNameDone} isGridDone={this.props.isGridDone} routeMatch = {this.props.routeMatch}/>
-                    {this.state.isNameDone ? <Description /> : null}
+                    <Name firstName='Michael'
+                        lastName='Fortunato'
+                        nameEntered={this.state.nameEntered}
+                        setNameEntered={this.setNameEntered}
+                        triggerNameEnter={this.props.triggerNameEnter}
+                        match={this.props.match}
+                    />
+                    {this.state.nameEntered ? <Description /> : null}
                 </StyledBanner>
                 <div className='col l3 s0' />
             </div>

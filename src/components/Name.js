@@ -17,21 +17,29 @@ const StyledName = styled.div`
 }
 
 `;
+const StyledFirstName = styled.div`
+    display: inline-block;
+    margin-right: 10px
+`
+const StyledLastName = styled.div`
+    display: inline-block; 
+    margin-left: 10px;
+`
 
 
 class Name extends React.Component {
     constructor(props) {
         super(props);
         this.firstNameConfigs = this.buildConfigs(this.props.firstName, 0);
-        this.middleNameConfigs = this.buildConfigs(this.props.middleName, 7);
-        this.lastNameConfigs = this.buildConfigs(this.props.lastName,7);
+        //this.middleNameConfigs = this.buildConfigs(this.props.middleName, 7);
+        this.lastNameConfigs = this.buildConfigs(this.props.lastName, 7);
     }
     buildConfigs(name, identifier) {
-        let configsList= [];
+        let configsList = [];
         let config = {};
         let letters = name.split('');
         configsList = letters.map((char, index) => {
-            config = this.configSetup(char, index,identifier);
+            config = this.configSetup(char, index, identifier);
             return (config);
         });
         return configsList;
@@ -44,7 +52,7 @@ class Name extends React.Component {
         config.durationEnter = 500;
 
         config.XOffsetExit = 100;
-        config.YOffsetExit= this.uniformRandom(-200, 200);
+        config.YOffsetExit = this.uniformRandom(-200, 200);
         config.durationExit = 900;
         config.delayExit = 100 * (index + identifier) + Math.random() * 400;
         return config
@@ -64,34 +72,36 @@ class Name extends React.Component {
         }
     }
     render() {
-        return (<StyledName>
-            <div style={{ 'display': 'inline-block', 'marginRight': '10px' }}>
-                {this.props.firstName.split('').map((char, index) => {
-                    return (
-                        <Letter 
-                            key = {index} 
-                            isNameDone = {this.props.isNameDone} 
-                            setIsNameDone = {this.props.setIsNameDone}
-                            isGridDone = {this.props.isGridDone}
-                            routeMatch = {this.props.routeMatch}
+        let animateNameOut = (this.props.match == null) && (this.props.nameEntered == true)
+        return (
+            <StyledName>
+                <StyledFirstName>
+                    {this.props.firstName.split('').map((char, index) => (
+                        <Letter
+                            key={index}
+                            animateNameOut={animateNameOut}
+                            setIsNameDone={this.props.setNameEntered}
+                            triggerNameEnter={this.props.triggerNameEnter}
+                            //animateNameOut={this.props.match}
                             {...this.firstNameConfigs[index]}
-                        />);
-                })}
-                </div>
-            <div style={{ 'display': 'inline-block', 'marginLeft': '10px' }}>
-            {this.props.lastName.split('').map((char, index) => {
-                    return (
-                        <Letter 
-                            key = {index + 7}
-                            isNameDone = {this.props.isNameDone} 
-                            setIsNameDone = {this.props.setIsNameDone}
-                            isGridDone = {this.props.isGridDone}
-                            routeMatch = {this.props.routeMatch}
+                        />)
+                    )}
+                </StyledFirstName>
+                <StyledLastName>
+                    {this.props.lastName.split('').map((char, index) =>
+                    (
+                        <Letter
+                            key={index + 7}
+                            animateNameOut ={animateNameOut}
+                            setIsNameDone={this.props.setNameEntered}
+                            triggerNameEnter={this.props.triggerNameEnter}
+                            //routeMatch={this.props.match}
                             {...this.lastNameConfigs[index]}
-                        />);
-                })}
-            </div>
-        </StyledName>);
+                        />)
+                    )}
+                </StyledLastName>
+            </StyledName>
+        );
     }
 }
 

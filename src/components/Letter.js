@@ -40,7 +40,7 @@ const StyledLetter = styled.span`
     &.letter-exit-done {
         transform: translate(${(props) => props.XOffsetExit}vw, ${(props) => props.YOffsetExit}vh);
     }
-
+:w
 
     
 `;
@@ -50,7 +50,7 @@ class Letter extends React.Component {
     render() {
         return (
             <CSSTransition
-                in={(this.props.isGridDone) && (this.props.routeMatch != null) && (this.props.isNameDone == false)}
+                in={(this.props.triggerNameEnter) && (this.props.animateNameOut == false)}
                 classNames='letter'
                 timeout={{
                     enter: this.props.durationEnter,

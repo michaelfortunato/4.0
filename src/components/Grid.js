@@ -58,10 +58,11 @@ class Grid extends React.Component {
         this.setRowLines();
         this.setColLines();
         
-   
-        setTimeout(this.props.setIsGridDone, this.totalGridlineEnterTime)
+        console.log(this.totalGridlineEnterTime)
+        setTimeout(this.props.setTriggerNameEnter, this.totalGridlineEnterTime)
         this.totalGridlineEnterTime = this.totalGridlineEnterTime + 250;
     }
+   
     position(i) {
         let fixedPos = this.props.offset + this.spacing * i;
         let floatingPos = 100 * (this.props.random ? Math.random(): 0);
@@ -98,8 +99,8 @@ class Grid extends React.Component {
             in = {true}
             timeout = {this.props.duration + this.totalGridlineEnterTime}
             classNames = 'fade-out'
-            onEntered = {this.props.setGridIsDone}
-            >
+            onEntered = {this.props.setGridEntered}
+        >
             <StyledGrid duration = {this.props.duration} delay = {this.totalGridlineEnterTime}> 
                 {this.rowLines} 
                 {this.colLines} 
