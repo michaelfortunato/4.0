@@ -53,7 +53,7 @@ class Name extends React.Component {
         config.XOffsetExit = 100;
         config.YOffsetExit = this.uniformRandom(-200, 200);
         config.durationExit = 900;
-        config.delayExit = 100 * (index + identifier) + Math.random() * 400;
+        config.delayExit = 100 * (index + identifier) + Math.random() * 600;
         return config
     }
     uniformRandom(min, max) {
@@ -81,6 +81,7 @@ class Name extends React.Component {
                             animateNameOut={animateNameOut}
                             setIsNameDone={this.props.setNameEntered}
                             triggerNameEnter={this.props.triggerNameEnter}
+                            location = {this.props.location}
                             beenVisited = {this.props.beenVisited}
                             {...this.firstNameConfigs[index]}
                         />)
@@ -94,6 +95,7 @@ class Name extends React.Component {
                             animateNameOut ={animateNameOut}
                             setIsNameDone={this.props.setNameEntered}
                             triggerNameEnter={this.props.triggerNameEnter}
+                            location = {this.props.location}
                             beenVisited = {this.props.beenVisited}
                             {...this.lastNameConfigs[index]}
                         />)

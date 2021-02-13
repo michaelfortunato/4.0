@@ -3,10 +3,38 @@ import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import '../css/index.css'
 const StyledAbout = styled.div`
-    background: purple;
     width: 100%;
     height: 100%; 
     position: absolute;
+    background-color: purple;
+
+    
+    &.about-enter {
+        opacity: 0;
+    }
+    &.about-enter-active {
+        opacity: 1;
+        background-color: purple;
+        transition-property: opacity background-color;
+        transition-duration: 3000ms;
+        transition-delay: ${(props) => props.delayEnter}ms;
+    }
+    &.about-enter-done {
+        opacity: 1;
+        background: purple;
+    }
+
+    &.about-exit {
+        opacity: 1;
+    }
+    &.about-exit-active {
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: 3000ms;
+    }
+    &.about-exit-done {
+        opacity: 0;
+    }
 `;
 class About extends React.Component {
     constructor(props) {
@@ -21,17 +49,24 @@ class About extends React.Component {
         }
     }
     render() {
+        let delayEnter = 0
         if ( (this.state.fromLocation == "/") && (this.props.location == "/about") ) {
-            console.log("Implement wait timer");
+            delayEnter = 3000;
+        } else {
+            delayEnter = 0;
         }
+        console.log(delayEnter);
         return (
             <CSSTransition
-                classNames="fade"
+                classNames="about"
                 in={this.props.location == '/about'}
-                timeout={1000}
+                timeout={{
+                    enter: 3000 + delayEnter,
+                    exit: 3000
+                }}
                 unmountOnExit
             >
-                <StyledAbout>
+                <StyledAbout delayEnter = {delayEnter} >
                     <p>s</p>
                 </StyledAbout>
             </CSSTransition>);

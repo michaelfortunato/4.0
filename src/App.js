@@ -30,7 +30,8 @@ class App extends React.Component {
                 '/about': false,
                 '/apps' : false,
                 '/blog' : false
-            }
+            },
+            prevLocation: null
         }
         this.setVisited = this.setVisited.bind(this)
     }
@@ -38,21 +39,17 @@ class App extends React.Component {
         if (this.state.initialVisits[path] == false) {
             this.setState({ initialVisits : {[path]: true }})
         }
-    }
+    } 
     render() {
         return (
-            <Router>
                 <div>
                     <Navbar />
                     {routes.map(({ path, Component }) => (
-                        <Route key={path} exact path={path}>
-                            {({ location, match }) => (
-                                <Component location={location.pathname} beenVisited = {this.state.initialVisits[path]} setVisited={this.setVisited} />
-                            )}
+                        <Route key={path}>
+                                <Component location={this.props.location.pathname} beenVisited = {this.state.initialVisits[path]} setVisited={this.setVisited} />
                         </Route>
                     ))}
                 </div>
-            </Router>
         );
     }
 }

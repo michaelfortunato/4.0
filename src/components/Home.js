@@ -6,11 +6,11 @@ import Grid from './Grid.js';
 import Hero from './Hero.js';
 
 const StyledHome = styled.div`
-    background: #e6af4b;
     overflow: hidden;
     position: absolute;
     width: 100%;
     height: 100%;
+    background-color: #e6af4b;
 
 
     &.home-enter {
@@ -18,11 +18,12 @@ const StyledHome = styled.div`
     }
     &.home-enter-active {
         opacity: 1;
-        transition-property: opacity;
-        transition-duration: 300ms;
-        transition-delay: 0ms;
+        background-color: #e6af4b;
+        transition-property: opacity background-color;
+        transition-duration: 3000ms;
     }
     &.home-enter-done {
+        background-color: #e6af4b;
         opacity: 1;
     }
 
@@ -32,7 +33,7 @@ const StyledHome = styled.div`
     &.home-exit-active {
         opacity: 0;
         transition-property: opacity;
-        transition-duration: 300ms;
+        transition-duration: 3000ms;
         transition-delay: 3000ms;
     }
     &.home-exit-done {
@@ -58,7 +59,10 @@ class Home extends React.Component {
             <CSSTransition
                 classNames="home"
                 in={this.props.location == '/'}
-                timeout={3300}
+                timeout={{
+                    enter: 3000,
+                    exit: 3000 + 3000
+                }}
                 onExited={() => { this.props.setVisited('/') }}
                 unmountOnExit
             >
