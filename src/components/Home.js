@@ -57,14 +57,22 @@ class Home extends React.Component {
         return (
             <CSSTransition
                 classNames="home"
-                in={this.props.routeMatch != null}
+                in={this.props.location == '/'}
                 timeout={3300}
+                onExited={() => { this.props.setVisited('/') }}
                 unmountOnExit
             >
-                <StyledHome>
-                    {!this.state.gridEntered ? <Grid setGridEntered={this.setGridEntered} setTriggerNameEnter={this.setTriggerNameEnter} /> : null}
-                    <Hero gridEntered={this.state.gridEntered} match={this.props.routeMatch} triggerNameEnter = {this.state.triggerNameEnter}/>
-                </StyledHome>
+                {
+                    !this.props.beenVisited
+                        ? <StyledHome>
+                            {!this.state.gridEntered ? <Grid setGridEntered={this.setGridEntered} setTriggerNameEnter={this.setTriggerNameEnter} /> : null}
+                            <Hero gridEntered={this.state.gridEntered} location={this.props.location} triggerNameEnter={this.state.triggerNameEnter} />
+                        </StyledHome>
+                        : 
+                        <StyledHome>
+                            <Hero gridEntered={this.state.gridEntered} match={this.props.routeMatch} triggerNameEnter={this.state.triggerNameEnter} />
+                    </StyledHome>
+                }
             </CSSTransition>
         );
     }

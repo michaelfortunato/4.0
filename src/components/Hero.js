@@ -28,7 +28,7 @@ class Hero extends React.Component {
                         nameEntered={this.state.nameEntered}
                         setNameEntered={this.setNameEntered}
                         triggerNameEnter={this.props.triggerNameEnter}
-                        match={this.props.match}
+                        location={this.props.location}
                     />
                     {this.state.nameEntered ? <Description /> : null}
                 </StyledBanner>

@@ -72,7 +72,7 @@ class Name extends React.Component {
         }
     }
     render() {
-        let animateNameOut = (this.props.match == null) && (this.props.nameEntered == true)
+        let animateNameOut = (this.props.location != '/') && (this.props.nameEntered == true)
         return (
             <StyledName>
                 <StyledFirstName>

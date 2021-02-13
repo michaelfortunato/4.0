@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import '../css/index.css'
 const StyledAbout = styled.div`
-    background: red;
+    background: purple;
     width: 100%;
     height: 100%; 
     position: absolute;
@@ -27,7 +27,7 @@ class About extends React.Component {
         return (
             <CSSTransition
                 classNames="fade"
-                in={this.props.routeMatch != null}
+                in={this.props.location == '/about'}
                 timeout={1000}
                 unmountOnExit
             >

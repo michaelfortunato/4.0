@@ -21,7 +21,24 @@ const routes = [
 ]
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            initialVisits: {
+                '/': false,
+                '/about': false,
+                '/apps' : false,
+                '/blog' : false
+            }
+        }
+        this.setVisited = this.setVisited.bind(this)
+    }
+    setVisited(path) {
+        if (this.state.initialVisits[path] == false) {
+            this.setState({ initialVisits : {[path]: true }})
+        }
+    }
     render() {
         return (
             <Router>
@@ -30,7 +47,7 @@ class App extends React.Component {
                     {routes.map(({ path, Component }) => (
                         <Route key={path} exact path={path}>
                             {({ location, match }) => (
-                               <Component routeMatch = {match} location = {location.pathname} />
+                                <Component location={location.pathname} beenVisited = {this.state.initialVisits[path]} setVisited={this.setVisited} />
                             )}
                         </Route>
                     ))}
