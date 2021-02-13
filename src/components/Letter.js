@@ -48,30 +48,54 @@ const StyledLetter = styled.span`
 
 class Letter extends React.Component {
     render() {
-        return (
-            <CSSTransition
-                in={(this.props.triggerNameEnter) && (this.props.animateNameOut == false)}
-                classNames='letter'
-                timeout={{
-                    enter: this.props.durationEnter,
-                    exit: this.props.durationExit + this.props.delayExit
-                }}
-                onEntered={this.props.setIsNameDone}
-            >
-                <StyledLetter
-                    XOffsetEnter={this.props.XOffsetEnter}
-                    YOffsetEnter={this.props.YOffsetEnter}
-                    durationEnter={this.props.durationEnter}
-                    XOffsetExit = {this.props.XOffsetExit}
-                    YOffsetExit = {this.props.YOffsetExit}
-                    durationExit = {this.props.durationExit}
-                    delayExit = {this.props.delayExit}
-                    isGridDone={this.props.isGridDone}
+        if (!this.props.beenVisited) {
+            return (
+                <CSSTransition
+                    in={(this.props.triggerNameEnter) && (this.props.animateNameOut == false)}
+                    classNames='letter'
+                    timeout={{
+                        enter: this.props.durationEnter,
+                        exit: this.props.durationExit + this.props.delayExit
+                    }}
+                    onEntered={this.props.setIsNameDone}
                 >
-                    {this.props.char}
-                </StyledLetter>
-            </CSSTransition>
-        );
+                    <StyledLetter
+                        XOffsetEnter={this.props.XOffsetEnter}
+                        YOffsetEnter={this.props.YOffsetEnter}
+                        durationEnter={this.props.durationEnter}
+                        XOffsetExit={this.props.XOffsetExit}
+                        YOffsetExit={this.props.YOffsetExit}
+                        durationExit={this.props.durationExit}
+                        delayExit={this.props.delayExit}
+                    >
+                        {this.props.char}
+                    </StyledLetter>
+                </CSSTransition>
+            );
+        } else {
+            return (
+                <CSSTransition
+                    in={this.props.location == '/'}
+                    classNames='letter'
+                    timeout={{
+                        enter: this.props.durationEnter,
+                        exit: this.props.durationExit + this.props.delayExit
+                    }}
+                >
+                    <StyledLetter
+                        XOffsetEnter={0}
+                        YOffsetEnter={0}
+                        durationEnter={this.props.durationEnter}
+                        XOffsetExit={this.props.XOffsetExit}
+                        YOffsetExit={this.props.YOffsetExit}
+                        durationExit={this.props.durationExit}
+                        delayExit={this.props.delayExit}
+                    >
+                        {this.props.char}
+                    </StyledLetter>
+                </CSSTransition>
+            );
+        }
     }
 }
 export { Letter, StyledLetter }

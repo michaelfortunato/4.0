@@ -30,8 +30,7 @@ const StyledLastName = styled.div`
 class Name extends React.Component {
     constructor(props) {
         super(props);
-        this.firstNameConfigs = this.buildConfigs(this.props.firstName, 0);
-        //this.middleNameConfigs = this.buildConfigs(this.props.middleName, 7);
+        this.firstNameConfigs = this.buildConfigs(this.props.firstName, 0);;
         this.lastNameConfigs = this.buildConfigs(this.props.lastName, 7);
     }
     buildConfigs(name, identifier) {
@@ -65,7 +64,7 @@ class Name extends React.Component {
         return ({ x: radius * Math.cos(theta), y: radius * Math.cos(theta) });
     }
     shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.isNameDone == true && nextProps.routeMatch != null) {
+        if (nextProps.isNameDone == true && nextProps.location == '/') {
             return false;
         } else {
             return true;
@@ -82,7 +81,7 @@ class Name extends React.Component {
                             animateNameOut={animateNameOut}
                             setIsNameDone={this.props.setNameEntered}
                             triggerNameEnter={this.props.triggerNameEnter}
-                            //animateNameOut={this.props.match}
+                            beenVisited = {this.props.beenVisited}
                             {...this.firstNameConfigs[index]}
                         />)
                     )}
@@ -95,7 +94,7 @@ class Name extends React.Component {
                             animateNameOut ={animateNameOut}
                             setIsNameDone={this.props.setNameEntered}
                             triggerNameEnter={this.props.triggerNameEnter}
-                            //routeMatch={this.props.match}
+                            beenVisited = {this.props.beenVisited}
                             {...this.lastNameConfigs[index]}
                         />)
                     )}
