@@ -6,7 +6,7 @@ const StyledAbout = styled.div`
     width: 100%;
     height: 100%; 
     position: absolute;
-    background-color: purple;
+    background-color: #14213D;
 
     
     &.about-enter {
@@ -14,14 +14,14 @@ const StyledAbout = styled.div`
     }
     &.about-enter-active {
         opacity: 1;
-        background-color: purple;
+        background-color: #14213D;
         transition-property: opacity background-color;
         transition-duration: 3000ms;
         transition-delay: ${(props) => props.delayEnter}ms;
     }
     &.about-enter-done {
         opacity: 1;
-        background: purple;
+        background-color: #14213D;
     }
 
     &.about-exit {

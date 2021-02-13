@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
-
+import Hamburger from 'hamburger-react'
 const StyledNavbutton = styled.div`
     position: absolute;
     top: 25%;
     left:2.5%;
-    color :#F5F5F5; 
+    color ${props => props.backgroundColor}; 
     font-size: 65px;
     z-index: 2;
     
@@ -20,7 +20,7 @@ const StyledNavbutton = styled.div`
         position: absolute;
         height: 3px;
         width: 100%;
-        background-color: #264653;
+        background-color: ${props => props.backgroundColor};
         left: 0;
     }
 
@@ -131,31 +131,14 @@ const StyledPatty3 = styled.span`
 }
 `;
 
-const Navbutton = (props) =>  {
-    return(
- 
-
-
-   /* <CSSTransition
-        classNames = 'open'
-        timeout = {}
-
-        
-    > */
-    <StyledNavbutton onClick = {() => props.setIsVisible(! props.isVisible)}>
-        <CSSTransition key = {1} in = {props.isVisible} classNames = 'patty' timeout = {250}>
-            <StyledPatty1 className = 'basepatty'/>
-        </CSSTransition>
-        <CSSTransition key = {2}  in = {props.isVisible} classNames = 'patty' timeout = {250}>
-            <StyledPatty2  className = 'basepatty'/>
-        </CSSTransition>
-        <CSSTransition key = {3} in = {props.isVisible} classNames = 'patty' timeout = {250}>
-            <StyledPatty3 className = 'basepatty'/>
-        </CSSTransition>
-    </StyledNavbutton>
-    //</CSSTransition>
- 
-    );
+class Navbutton extends React.Component {
+    render() {
+        return (
+            <StyledNavbutton  backgroundColor={this.props.styleConfig.backgroundColor}>
+                <Hamburger toggled={this.props.isVisible} toggle={this.props.setIsVisible} />
+            </StyledNavbutton>
+        );
+    }
 }
 
 

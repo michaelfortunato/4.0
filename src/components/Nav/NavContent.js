@@ -8,7 +8,7 @@ const StyledNavContent = styled.div`
     left: 0;
     height: 100%;
     transform: translateY(-102%);
-    background-color: #264653;
+    background-color: ${(props) => props.backgroundColor};
     clip-path: polygon(100% 0, 100% 100%, 0% 0%);
     font-size: 10px;
 
@@ -47,17 +47,18 @@ const StyledNavContent = styled.div`
 
 
 const NavContent = (props) => {
+    console.log(props.styleConfig.textColor);
     return(
         <CSSTransition
         in = {props.isVisible}
         classNames = 'toggle-nav'
         timeout = {400}>
             
-            <StyledNavContent className = 'row'>
-                <NavItem isFirst = {true} URL = "/" text = "Home"/>
-                <NavItem URL = "/about" text = "About"/>
-                <NavItem URL = "/Apps" text = "Apps"/>
-                <NavItem URL = "/Blog" text = "Blog"/>
+            <StyledNavContent className = 'row' backgroundColor = {props.styleConfig.backgroundColor}>
+                <NavItem isFirst = {true} URL = "/" text = "HOME" textColor = {props.styleConfig.textColor}/>
+                <NavItem URL = "/about" text = "ABOUT" textColor = {props.styleConfig.textColor} />
+                <NavItem URL = "/Apps" text = "PROJECTS" textColor = {props.styleConfig.textColor}/>
+                <NavItem URL = "/Blog" text = "BLOG" textColor = {props.styleConfig.textColor}/>
             </StyledNavContent>
             
         </CSSTransition>

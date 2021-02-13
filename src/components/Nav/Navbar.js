@@ -1,4 +1,4 @@
-import React , { useState }  from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import NavContent from './NavContent.js';
 import Navbutton from './Navbutton.js';
@@ -12,16 +12,29 @@ const StyledNavbar = styled.div`
 
 `;
 
-
-
-const Navbar = (props) => {
-    const [ isVisible, setIsVisible ] = useState(false);
-    return(
-        <StyledNavbar>
-            <Navbutton  isVisible = {isVisible} setIsVisible =  {setIsVisible} />
-            <NavContent isVisible = {isVisible} setIsVisible =  {setIsVisible} />
-        </StyledNavbar>
-    );
+const NavConfiguration = {
+    '/': { backgroundColor: "#264653", textColor: "white" },
+    '/about': { backgroundColor: "#9ac6c5", textColor: "black" }
 }
 
+class Navbar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isVisible: false }
+        this.setIsVisible = this.setIsVisible.bind(this);
+    }
+    setIsVisible() {
+        console.log("Triggered");
+        this.setState((state) => ({ isVisible: !state.isVisible }))
+    }
+    render() {
+        let styleConfig = NavConfiguration[this.props.location];
+        return (
+            <StyledNavbar>
+                <Navbutton isVisible={this.state.isVisible} setIsVisible={this.setIsVisible} styleConfig={styleConfig} />
+                <NavContent isVisible={this.state.isVisible} setIsVisible={this.setIsVisible} styleConfig={styleConfig} />
+            </StyledNavbar>
+        );
+    }
+}
 export default Navbar;

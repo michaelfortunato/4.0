@@ -16,8 +16,8 @@ import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
 const routes = [
-    { path: '/about', name: 'Home', Component: About },
-    { path: '/', name: 'About', Component: Home }
+    { path: '/about', name: 'Home', Component: About},
+    { path: '/', name: 'About', Component: Home}
 ]
 
 class App extends React.Component {
@@ -43,7 +43,7 @@ class App extends React.Component {
     render() {
         return (
                 <div>
-                    <Navbar />
+                    <Navbar location = {this.props.location.pathname}/>
                     {routes.map(({ path, Component }) => (
                         <Route key={path}>
                                 <Component location={this.props.location.pathname} beenVisited = {this.state.initialVisits[path]} setVisited={this.setVisited} />
