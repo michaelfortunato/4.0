@@ -7,6 +7,7 @@ const StyledNavContent = styled.div`
     position: relative;
     left: 0;
     height: 100%;
+    transform: translateY(-102%);
     background-color: ${(props) => props.backgroundColor};
     clip-path: polygon(100% 0, 100% 100%, 0% 0%);
     font-size: 10px;
