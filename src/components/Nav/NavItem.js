@@ -7,6 +7,7 @@ const StyledNavItem = styled.div`
     top: 25%;
     color: white;
     font-size: 2em;
+    font-family: 'Lato', sans-serif;
 `;
 class NavItem extends React.Component {
  render() {
