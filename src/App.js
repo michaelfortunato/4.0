@@ -39,6 +39,11 @@ class App extends React.Component {
         if (this.state.initialVisits[path] == false) {
             this.setState({ initialVisits : {[path]: true }})
         }
+    }
+    componentDidUpdate() {
+        if (this.props.location.pathname != this.state.prevLocation) {
+            this.setState({prevLocation: this.props.location.pathname})
+        }
     } 
     render() {
         return (

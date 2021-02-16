@@ -2,6 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import '../css/index.css'
+import Lottie from 'react-lottie'
+import animationData from '../data.json'
+const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData
+}
 const StyledAbout = styled.div`
     width: 100%;
     height: 100%; 
@@ -45,12 +52,12 @@ class About extends React.Component {
     }
     componentDidUpdate() {
         if (this.props.location != this.state.fromLocation) {
-            this.setState({ fromLocation: this.props.location})
+            this.setState({ fromLocation: this.props.location })
         }
     }
     render() {
         let delayEnter = 0
-        if ( (this.state.fromLocation == "/") && (this.props.location == "/about") ) {
+        if ((this.state.fromLocation == "/") && (this.props.location == "/about")) {
             delayEnter = 3000;
         } else {
             delayEnter = 0;
@@ -66,8 +73,12 @@ class About extends React.Component {
                 }}
                 unmountOnExit
             >
-                <StyledAbout delayEnter = {delayEnter} >
-                    <p>s</p>
+                <StyledAbout delayEnter={delayEnter} >
+                    <Lottie options={defaultOptions}
+                        width='70vw'
+                        height='100vh'
+                        style={{ 'position': 'relative', 'top': '10%' }}
+                    />
                 </StyledAbout>
             </CSSTransition>);
     }
