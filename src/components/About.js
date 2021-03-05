@@ -84,9 +84,7 @@ class About extends React.Component {
             >
                 <StyledAbout delayEnter={delayEnter} >
                     <Lottie lottieRef = {this.lottieRef} loop = {true} autoplay = {false} animationData = {animationData}
-                        width='70vw'
-                        height='100vh'
-                        style={{ 'position': 'relative', 'top': '10%' }}
+                        style={{ 'position': 'relative', 'top': '10%', 'height': '40vh' }}
                     />
                 </StyledAbout>
             </CSSTransition>);
