@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import '../css/index.css'
-import Lottie from 'react-lottie'
+import Lottie from 'lottie-react'
 import animationData from '../data.json'
 const defaultOptions = {
     loop: true,
@@ -47,8 +47,15 @@ class About extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fromLocation: "/"
+            fromLocation: "/",
+            hasEntered : false
         }
+        this.lottieRef = React.createRef()
+        this.toggleHasEntered = this.toggleHasEntered.bind(this)
+    }
+    toggleHasEntered() {
+        console.log("YES")
+        this.setState({hasEntered : true})
     }
     componentDidUpdate() {
         if (this.props.location != this.state.fromLocation) {
@@ -63,6 +70,7 @@ class About extends React.Component {
             delayEnter = 0;
         }
         console.log(delayEnter);
+        if (this.state.hasEntered) {this.lottieRef.current.play()}
         return (
             <CSSTransition
                 classNames="about"
@@ -71,10 +79,11 @@ class About extends React.Component {
                     enter: 3000 + delayEnter,
                     exit: 3000
                 }}
+                onEntered = {this.toggleHasEntered}
                 unmountOnExit
             >
                 <StyledAbout delayEnter={delayEnter} >
-                    <Lottie options={defaultOptions}
+                    <Lottie lottieRef = {this.lottieRef} loop = {true} autoplay = {false} animationData = {animationData}
                         width='70vw'
                         height='100vh'
                         style={{ 'position': 'relative', 'top': '10%' }}
