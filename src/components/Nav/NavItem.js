@@ -2,27 +2,26 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
-const StyledNavItem = styled.div`    
+const Wrapper = styled.div`    
     position: relative;
     top: 25%;
-    color: white;
-    font-size: 3em;
+    font-size: 2.7em;
     font-family: 'Lato', sans-serif;
-    
-    :hover {
-        background-color: 
-    }
 `;
+
+const StyledNavItem = styled(Link)`
+    color: white;
+
+}
+`
+;
 class NavItem extends React.Component {
     render() {
-        let materialUIGridClass = "col s1"
-        if (this.props.isFirst) {
-            materialUIGridClass = materialUIGridClass + " offset-s8";
-        }
+        let materialUIGridClass = (this.props.isFirst) ? "col s1 offset-s8" : "col s1";
         return (
-            <StyledNavItem className={materialUIGridClass} >
-                <Link to={this.props.URL} style={{ "color": this.props.textColor }} className="center-align">{this.props.text}</Link>
-            </StyledNavItem>
+            <Wrapper className={materialUIGridClass} >
+                <StyledNavItem onClick = {this.props.toggle} to={this.props.url}> {this.props.text}</StyledNavItem>
+            </Wrapper>
         );
     }
 }

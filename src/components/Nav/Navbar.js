@@ -24,10 +24,10 @@ class Navbar extends React.Component {
         this.setIsVisible = this.setIsVisible.bind(this);
     }
     setIsVisible() {
-        console.log("Triggered");
         this.setState((state) => ({ isVisible: !state.isVisible }))
     }
     render() {
+        console.log(`Is Open: ${this.state.isVisible}`)
         let styleConfig = NavConfiguration[this.props.location];
         return (
             <StyledNavbar>

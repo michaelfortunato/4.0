@@ -5,7 +5,7 @@ import './css/materialize.css'
 
 import Navbar from './components/Nav/Navbar.js'
 import Home from './components/Home.js'
-import About from './components/About.js'
+import About from './components/About/About.js'
 
 import {
     BrowserRouter as Router,

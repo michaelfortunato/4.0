@@ -43,7 +43,13 @@ const StyledNavContent = styled.div`
     }
 `;
 
-
+const NavRoutes = [
+    {isFirst: true, url: "/", text: "Home"}, 
+    {isFirst: false, url: "/about", text: "About"}, 
+    {isFirst: false, url: "/apps", text: "Apps"}, 
+    {isFirst: false, url: "/blog", text: "Blog"}, 
+    {},
+]
 
 
 class NavContent extends React.Component {
@@ -55,10 +61,12 @@ class NavContent extends React.Component {
                 timeout={400} >
 
                 <StyledNavContent className='row' backgroundColor={this.props.styleConfig.backgroundColor}>
-                    <NavItem isFirst={true} URL="/" text="HOME" textColor={this.props.styleConfig.textColor} />
-                    <NavItem URL="/about" text="ABOUT" textColor={this.props.styleConfig.textColor} />
-                    <NavItem URL="/Apps" text="PROJECTS" textColor={this.props.styleConfig.textColor} />
-                    <NavItem URL="/Blog" text="BLOG" textColor={this.props.styleConfig.textColor} />
+                    {NavRoutes.map(({isFirst, url, text}) => 
+                        <NavItem isFirst={isFirst} 
+                                url={url} 
+                                text={text} 
+                                textColor={this.props.styleConfig.textColor} 
+                                toggle = {this.props.setIsVisible}  />)}
                 </StyledNavContent>
 
             </CSSTransition>

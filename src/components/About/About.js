@@ -1,21 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
-import '../css/index.css'
-import Lottie from 'lottie-react'
-import animationData from '../data.json'
-const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData
-}
-const StyledAbout = styled.div`
-    width: 100%;
-    height: 100%; 
-    position: absolute;
-    background-color: #14213D;
+import '../../css/index.css'
+import AboutFirstPage from './AboutFirstPage.js'
+import AboutSecondPage from './AboutSecondPage.js'
 
-    
+
+const StyledAbout = styled.div`
+    background-color: #14213D;
+    width: 100%;
+    overflow-x: hidden;
     &.about-enter {
         opacity: 0;
     }
@@ -54,7 +48,6 @@ class About extends React.Component {
         this.toggleHasEntered = this.toggleHasEntered.bind(this)
     }
     toggleHasEntered() {
-        console.log("YES")
         this.setState({hasEntered : true})
     }
     componentDidUpdate() {
@@ -69,8 +62,6 @@ class About extends React.Component {
         } else {
             delayEnter = 0;
         }
-        console.log(delayEnter);
-        if (this.state.hasEntered) {this.lottieRef.current.play()}
         return (
             <CSSTransition
                 classNames="about"
@@ -83,9 +74,8 @@ class About extends React.Component {
                 unmountOnExit
             >
                 <StyledAbout delayEnter={delayEnter} >
-                    <Lottie lottieRef = {this.lottieRef} loop = {true} autoplay = {false} animationData = {animationData}
-                        style={{ 'position': 'relative', 'top': '10%', 'height': '90%', 'width': '70%'}}
-                    />
+                    <AboutFirstPage lottieRef = {this.lottieRef} doPlay = {this.state.hasEntered}/>
+                    {true ? <AboutSecondPage /> : null}
                 </StyledAbout>
             </CSSTransition>);
     }
