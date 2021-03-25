@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import '../../css/index.css'
 import AboutFirstPage from './AboutFirstPage.js'
-import AboutSecondPage from './AboutSecondPage.js'
+import AboutSecondPage from './SecondPage/AboutSecondPage.js'
 
 
 const StyledAbout = styled.div`

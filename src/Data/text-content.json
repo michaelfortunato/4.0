@@ -1,0 +1,21 @@
+{
+    "About": {
+        "pages": [
+            {}, 
+            {
+                "title": "About Page 2",
+                "descriptions": [
+                    {
+                        "paragraphs": [
+                            "What defines a person?",
+                            "I think most people think a personality is inherit, an ineffible thing",
+                            "But I have had a friend who thinks a person can be defined by the things they do",
+                            "I don't know answer. I think I'm a nervous, funny person", 
+                            "I hope you don't find this whole experiment to mean I am arrogant. I am really only doing this to become a better front-end developer, to a UI framework well, to learn barebones html CSS and javascript well."
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
