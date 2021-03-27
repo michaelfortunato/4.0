@@ -7,9 +7,12 @@ import AboutSecondPage from './SecondPage/AboutSecondPage.js'
 
 
 const StyledAbout = styled.div`
+    width: 100vw;
+    height:100vh;
     background-color: #14213D;
-    width: 100%;
+    position:absolute;
     overflow-x: hidden;
+    
     &.about-enter {
         opacity: 0;
     }
@@ -18,7 +21,7 @@ const StyledAbout = styled.div`
         background-color: #14213D;
         transition-property: opacity background-color;
         transition-duration: 3000ms;
-        transition-delay: ${(props) => props.delayEnter}ms;
+        transition-delay: 3000ms;
     }
     &.about-enter-done {
         opacity: 1;
@@ -40,44 +43,15 @@ const StyledAbout = styled.div`
 class About extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            fromLocation: "/",
-            hasEntered : false
-        }
         this.lottieRef = React.createRef()
-        this.toggleHasEntered = this.toggleHasEntered.bind(this)
-    }
-    toggleHasEntered() {
-        this.setState({hasEntered : true})
-    }
-    componentDidUpdate() {
-        if (this.props.location != this.state.fromLocation) {
-            this.setState({ fromLocation: this.props.location })
-        }
     }
     render() {
-        let delayEnter = 0
-        if ((this.state.fromLocation == "/") && (this.props.location == "/about")) {
-            delayEnter = 3000;
-        } else {
-            delayEnter = 0;
-        }
         return (
-            <CSSTransition
-                classNames="about"
-                in={this.props.location == '/about'}
-                timeout={{
-                    enter: 3000 + delayEnter,
-                    exit: 3000
-                }}
-                onEntered = {this.toggleHasEntered}
-                unmountOnExit
-            >
-                <StyledAbout delayEnter={delayEnter} >
-                    <AboutFirstPage lottieRef = {this.lottieRef} doPlay = {this.state.hasEntered}/>
-                    {true ? <AboutSecondPage /> : null}
-                </StyledAbout>
-            </CSSTransition>);
+            <StyledAbout delayEnter={this.props.delayEnter} >
+                {//<AboutFirstPage lottieRef={this.lottieRef} doPlay={true} />
+    }
+                {false ? <AboutSecondPage /> : null}
+            </StyledAbout>);
     }
 }
 export default About

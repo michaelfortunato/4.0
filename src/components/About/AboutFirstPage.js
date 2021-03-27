@@ -20,7 +20,7 @@ class AboutFirstPage extends React.Component {
         if (this.props.doPlay) {this.lottieRef.current.play()}
         return (
             <StyledPage>
-            <Lottie onComplete={() => null}
+            <Lottie
                 lottieRef={this.lottieRef} loop={false} autoplay={false} animationData={animationData}
                 style={{ 'position': 'relative', 'top': '10%', 'height': '90%', 'width': '100%' }}
             />

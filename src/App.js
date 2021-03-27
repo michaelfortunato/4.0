@@ -16,8 +16,8 @@ import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
 const routes = [
-    { path: '/about', name: 'Home', Component: About},
-    { path: '/', name: 'About', Component: Home}
+    { path: '/about', name: 'About', aniName: 'about', aniEnterTime: 6000, aniExitTime: 3000, Component: About},
+    { path: '/', name: 'Home', aniName: 'home', aniEnterTime: 3000, aniExitTime: 6000, Component: Home}
 ]
 
 class App extends React.Component {
@@ -49,9 +49,22 @@ class App extends React.Component {
         return (
                 <div>
                     <Navbar location = {this.props.location.pathname}/>
-                    {routes.map(({ path, Component }) => (
+                    {routes.map(({ path, aniName, aniEnterTime, aniExitTime, Component }) => (
                         <Route key={path}>
+                                <CSSTransition
+                                 classNames = {aniName}
+                                 in = {this.props.location.pathname == path}
+                                 timeout = {
+                                     {
+                                         enter: aniEnterTime, 
+                                         exit: aniExitTime
+                                     }
+                                 }
+                                 unmountOnExit = {true}
+
+                                 >
                                 <Component location={this.props.location.pathname} beenVisited = {this.state.initialVisits[path]} setVisited={this.setVisited} />
+                                </CSSTransition>
                         </Route>
                     ))}
                 </div>
