@@ -43,15 +43,14 @@ const StyledAbout = styled.div`
 class About extends React.Component {
     constructor(props) {
         super(props);
-        this.lottieRef = React.createRef()
     }
     render() {
         return (
             <StyledAbout delayEnter={this.props.delayEnter} >
-                {//<AboutFirstPage lottieRef={this.lottieRef} doPlay={true} />
-    }
-                {false ? <AboutSecondPage /> : null}
-            </StyledAbout>);
+                <AboutFirstPage doPlay={this.props.hasEntered} />
+                <AboutSecondPage /> 
+            </StyledAbout>
+            );
     }
 }
 export default About

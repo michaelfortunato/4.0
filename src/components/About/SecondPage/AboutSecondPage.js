@@ -21,9 +21,8 @@ class AboutSecondPage extends React.Component
         let descriptions = textDescription.About.pages[1].descriptions
         return <StyledPage>
             {descriptions.map( ({paragraphs}) => 
-                <ScrollAnimation  animateIn='test' animateOut="testOut" duration = {1}>
+              
                  <FloatingText xPos = {0} yPos ={0} description = {paragraphs}/>
-               </ScrollAnimation>
             )}
         </StyledPage>
     }

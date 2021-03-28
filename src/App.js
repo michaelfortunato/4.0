@@ -32,7 +32,7 @@ class App extends React.Component {
                 '/blog' : false
             },
             prevLocation: null,
-            hasEntered: false
+            hasEntered: true
         }
         this.setVisited = this.setVisited.bind(this)
         this.setEntered = this.setEntered.bind(this)
@@ -69,7 +69,7 @@ class App extends React.Component {
                                  onEntered = {() => this.setEntered(true)}
                                  unmountOnExit = {true}
                                  >
-                                <Component location={this.props.location.pathname} />
+                                <Component location={this.props.location.pathname} hasEntered = {this.state.hasEntered}/>
                                 </CSSTransition>
                         </Route>
                     ))}

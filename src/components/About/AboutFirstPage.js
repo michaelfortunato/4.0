@@ -16,8 +16,18 @@ class AboutFirstPage extends React.Component {
         super(props);
         this.lottieRef = React.createRef()
     }
+    componentDidMount() {
+        console.log(this.lottieRef)
+        if (this.props.doPlay) {
+            this.lottieRef.current.play()
+        }
+    }
+    componentDidUpdate() {
+        if (this.props.doPlay) {
+            this.lottieRef.current.play()
+        }
+    }
     render() {
-        if (this.props.doPlay) {this.lottieRef.current.play()}
         return (
             <StyledPage>
             <Lottie
