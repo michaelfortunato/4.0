@@ -28,10 +28,9 @@ class Hero extends React.Component {
                         triggerNameEnter={this.props.triggerNameEnter}
                         nameEntered={this.state.nameEntered}
                         setNameEntered={this.setNameEntered}
-                        beenVisited = {this.props.beenVisited}
                         location={this.props.location}
                     />
-                    {this.state.nameEntered || (this.props.beenVisited) ? <Description /> : null}
+                    {this.state.nameEntered ? <Description /> : null}
                 </StyledBanner>
                 <div className='col l3 s0' />
             </div>

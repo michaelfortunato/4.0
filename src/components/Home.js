@@ -56,10 +56,9 @@ class Home extends React.Component {
     }
     render() {
         return (
-                
                 <StyledHome>
-                    {!this.state.gridEntered && (!this.props.beenVisited) ? <Grid setGridEntered={this.setGridEntered} setTriggerNameEnter={this.setTriggerNameEnter} /> : null}
-                    <Hero gridEntered={this.state.gridEntered} location={this.props.location} triggerNameEnter={this.state.triggerNameEnter} beenVisited={this.props.beenVisited} />
+                    {!this.state.gridEntered ? <Grid setGridEntered={this.setGridEntered} setTriggerNameEnter={this.setTriggerNameEnter} /> : null}
+                    <Hero gridEntered={this.state.gridEntered} location={this.props.location} triggerNameEnter={this.state.triggerNameEnter} />
                 </StyledHome>
         );
     }

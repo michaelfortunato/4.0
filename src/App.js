@@ -31,14 +31,19 @@ class App extends React.Component {
                 '/apps' : false,
                 '/blog' : false
             },
-            prevLocation: null
+            prevLocation: null,
+            hasEntered: false
         }
         this.setVisited = this.setVisited.bind(this)
+        this.setEntered = this.setEntered.bind(this)
     }
     setVisited(path) {
         if (this.state.initialVisits[path] == false) {
             this.setState({ initialVisits : {[path]: true }})
         }
+    }
+    setEntered(bool) {
+        this.setState({hasEntered: bool})
     }
     componentDidUpdate() {
         if (this.props.location.pathname != this.state.prevLocation) {
@@ -60,10 +65,11 @@ class App extends React.Component {
                                          exit: aniExitTime
                                      }
                                  }
+                                 onEnter = {() => this.setEntered(false)}
+                                 onEntered = {() => this.setEntered(true)}
                                  unmountOnExit = {true}
-
                                  >
-                                <Component location={this.props.location.pathname} beenVisited = {this.state.initialVisits[path]} setVisited={this.setVisited} />
+                                <Component location={this.props.location.pathname} />
                                 </CSSTransition>
                         </Route>
                     ))}

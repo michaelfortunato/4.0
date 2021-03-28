@@ -82,7 +82,6 @@ class Name extends React.Component {
                             setIsNameDone={this.props.setNameEntered}
                             triggerNameEnter={this.props.triggerNameEnter}
                             location = {this.props.location}
-                            beenVisited = {this.props.beenVisited}
                             {...this.firstNameConfigs[index]}
                         />)
                     )}
@@ -96,7 +95,6 @@ class Name extends React.Component {
                             setIsNameDone={this.props.setNameEntered}
                             triggerNameEnter={this.props.triggerNameEnter}
                             location = {this.props.location}
-                            beenVisited = {this.props.beenVisited}
                             {...this.lastNameConfigs[index]}
                         />)
                     )}
