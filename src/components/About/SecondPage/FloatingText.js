@@ -3,12 +3,12 @@ import styled from 'styled-components'
 
 
 const StyledText = styled.div`
-    position: absolute;
+    position: relative;
+    text-align: center;
     
     left: ${(props)=> props.xPos}%;
     top: ${(props) => props.yPos}%;
-    width: 25%;
-    height: 15%;
+   
     color: white;
     font-size: 2.2em;
     font-family: 'Lato', sans-serif;

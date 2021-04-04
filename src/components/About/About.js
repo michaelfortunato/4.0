@@ -4,7 +4,16 @@ import { CSSTransition } from 'react-transition-group'
 import '../../css/index.css'
 import AboutFirstPage from './AboutFirstPage.js'
 import AboutSecondPage from './SecondPage/AboutSecondPage.js'
+import AboutThirdPage from './AboutThirdPage.js'
 
+const StyledChildPage = styled.div`
+    position: relative;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+`;
 
 const StyledAbout = styled.div`
     width: 100vw;
@@ -49,6 +58,7 @@ class About extends React.Component {
             <StyledAbout delayEnter={this.props.delayEnter} >
                 <AboutFirstPage doPlay={this.props.hasEntered} />
                 <AboutSecondPage /> 
+                <AboutThirdPage />
             </StyledAbout>
             );
     }
