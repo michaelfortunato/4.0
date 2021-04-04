@@ -51,27 +51,40 @@ const config = {
     "bottomDesc": {}
 };
 class AboutSecondPage extends React.Component {
+
+    bannerDescriptions() {
+        let descriptions = config.descriptions
+        return (<React.Fragment><Grid item xs={12} lg={6}>
+            <FloatingText text={descriptions[0].paragraphs} xPos={0} yPos={0} />
+        </Grid>
+            <Grid container item justify='flex-end' xs={12}>
+                <Grid item xs={12} lg={6}>
+                    <FloatingText text={descriptions[1].paragraphs} xPos={0} yPos={0} />
+                </Grid>
+            </Grid></React.Fragment>
+        );
+    }
+    footerDescription() {
+        let descriptions = config.descriptions
+        return (
+            <Grid item xs={9}>
+                <FloatingText text={descriptions[2].paragraphs} xPos={0} yPos={0} />
+            </Grid>);
+
+    }
+
     render() {
         let descriptions = config.descriptions
-        return <StyledPage>
-            <Grid style = {{'width':'100%'}} container spacing = {4} alignItems = 'center'>
+        return (<StyledPage>
+            <Grid style={{ 'height': '100%', 'width': '100%' }} container spacing={4} alignItems='center'>
                 <Grid container item style={{ 'height': '50%', 'width': '100%' }} xs={12} alignItems='center'>
-                    <Grid item xs={12} lg={6}>
-                        <FloatingText description={descriptions[0].paragraphs} xPos={0} yPos={0} />
-                    </Grid>
-                <Grid container item justify='flex-end' xs={12}>
-                    <Grid item xs={12} lg={6}>
-                        <FloatingText description={descriptions[1].paragraphs} xPos={0} yPos={0} />
-                    </Grid>
+                    {this.bannerDescriptions()}
                 </Grid>
-                </Grid>
-            <Grid container style = {{'height':'75%'}} item xs={12} justify='center' alignItems = 'center'>
-                <Grid item xs={9}>
-                    <FloatingText description = {descriptions[2].paragraphs} xPos={0} yPos= {0}/>
+                <Grid container style={{ 'height': '75%' }} item xs={12} justify='center' alignItems='center'>
+                    {this.footerDescription()}
                 </Grid>
             </Grid>
-             </Grid>
-        </StyledPage >
+        </StyledPage >)
     }
 }
 

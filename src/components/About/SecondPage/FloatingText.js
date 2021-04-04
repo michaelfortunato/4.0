@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import Roll from 'react-reveal/Roll'
 
 
 const StyledText = styled.div`
     position: relative;
     text-align: center;
     
-    left: ${(props)=> props.xPos}%;
+    left: ${(props) => props.xPos}%;
     top: ${(props) => props.yPos}%;
    
     color: white;
@@ -17,10 +18,11 @@ const StyledText = styled.div`
 class FloatingText extends React.Component {
     render() {
         return (
-            <StyledText {...this.props}>
-                <p> {this.props.description[0]} </p>
-                <p> {this.props.description[1]} </p>
-            </StyledText>
+            <Roll>
+                <StyledText {...this.props}>
+                    {this.props.text.map((desc) =><p> {desc} </p>)}
+
+                </StyledText></Roll>
         )
     }
 }
