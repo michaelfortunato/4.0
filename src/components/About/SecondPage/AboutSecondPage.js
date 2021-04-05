@@ -7,12 +7,8 @@ import '../../../css/About.css'
 
 const StyledPage = styled.div`
 
-    position: relative;
-    padding: 0;
-    border: 0;
-    margin: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 `
 const config = {
     "title": "About Page 2",
