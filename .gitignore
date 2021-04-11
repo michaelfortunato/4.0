@@ -6,7 +6,7 @@
 .pnp.js
 
 # Animation Renders
-/Animations/
+/Animations
 !*/Animations/*.aep
 
 # testing
