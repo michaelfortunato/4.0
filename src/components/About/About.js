@@ -55,9 +55,7 @@ class About extends React.Component {
     render() {
         return (
             <StyledAbout delayEnter={this.props.delayEnter} >
-                <AboutFirstPage doPlay={this.props.hasEntered} />
-                <AboutSecondPage /> 
-                <AboutThirdPage />
+                <AboutFirstPage />
             </StyledAbout>
             );
     }
