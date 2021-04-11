@@ -6,11 +6,8 @@
 .pnp.js
 
 # Animation Renders
-**/*.avi
-/Animations/Adobe\ After\ Effects\ Auto-Save
-/Animations/Archive
-Animations/SubwayAnim-Fast-Draft.aep\ Logs
-/Animations/.
+/Animations/
+!*/Animations/*.aep
 
 # testing
 /coverage
