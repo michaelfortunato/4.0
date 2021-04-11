@@ -1,0 +1,8 @@
+  4/10/2021 10:33:16 PM: Starting composition “NYC_subway-FinalDraft”.
+
+  Output To: C:\Users\Michael Fortunato\Projects\4.0\Animations\SubwayAnim-Rendered-FAST.avi    4/10/2021 10:33:23 PM: Finished composition “NYC_subway-FinalDraft”.
+
+
+  Total Time Elapsed: 7 Seconds
+Log closed on 4/10/2021 at 10:33:23 PM
+

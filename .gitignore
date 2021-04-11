@@ -6,7 +6,10 @@
 .pnp.js
 
 # Animation Renders
-/Animations
+**/*.avi
+/Animations/Adobe\ After\ Effects\ Auto-Save
+/Animations/Archive
+/Animations/.
 
 # testing
 /coverage
